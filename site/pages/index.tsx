@@ -16,7 +16,7 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Welcome to Certi Covid
         </h1>
-        <a href="http://192.168.1.5:3666/api/pass">DOWNLOAD</a>
+        <a href="https://covid-cert.vercel.app/api/pass">DOWNLOAD</a>
       </main>
 
       <footer className={styles.footer}>
