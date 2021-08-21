@@ -1,13 +1,17 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
+import fs from 'fs'
 
 type Data = {
   name: string
 }
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse,
 ) {
-  res.status(200).json({ name: 'Gary Ascuy' })
+  const buffer = await fs.promises.readFile('/Users/gary/develop/startups/covid/site/pages/api/demo.pkpass')
+  res.setHeader('Content-Type', 'application/vnd.apple.pkpass')
+  res.setHeader('Content-Disposition', 'attachment; filename=certcovid.pkpass');
+  res.status(200).send(buffer)
 }

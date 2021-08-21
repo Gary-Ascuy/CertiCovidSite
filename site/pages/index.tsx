@@ -16,16 +16,16 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Welcome to Certi Covid
         </h1>
-        
+        <a href="http://192.168.1.5:3666/api/pass">DOWNLOAD</a>
       </main>
 
       <footer className={styles.footer}>
         <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          href="https://github.com/Gary-Ascuy/Covid-Cert"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by Covid Friends
+          Powered by Covid Friends (AKA Los Amigos del Mani)
         </a>
       </footer>
     </div>
