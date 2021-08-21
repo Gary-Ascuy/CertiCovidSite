@@ -16,7 +16,7 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Welcome to Certi Covid
         </h1>
-        <a href='/api/pass'>download pass</a>
+        <link href='/api/pass'>download</link>
       </main>
 
       <footer className={styles.footer}>
