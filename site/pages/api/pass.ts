@@ -7,10 +7,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const data = await getData(req.query.code as string)
+  const url = req.query.code as string
+  const data = await getData(url)
 
   const template = await getCacheTemplate()
-  const pass = template.createPass(buildApplePass(data))
+  const pass = template.createPass(buildApplePass(url, data))
   const buffer = await pass.asBuffer()
 
   res.setHeader('Content-Type', 'application/vnd.apple.pkpass')
