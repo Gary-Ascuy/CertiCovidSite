@@ -1,11 +1,30 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-html-link-for-pages */
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 const Preview: NextPage = () => {
   const router = useRouter()
-  const url = sessionStorage.getItem('covid-scan-url') || ''
+  const [url, setURL] = useState('')
+  const [data, setData] = useState({})
+
+  useEffect(() => {
+    const loadData = async () => {
+      if (!url) return
+
+      const request = await fetch(`/api/person?code=${url}`)
+      setData(await request.json())
+    }
+    loadData()
+  }, [url])
+
+  useEffect(() => {
+    const covidScanUrl = window.sessionStorage.getItem('covid-scan-url') || ''
+    setURL(encodeURI(window.btoa(covidScanUrl)));
+  }, [])
 
   return (
     <div>
@@ -16,10 +35,20 @@ const Preview: NextPage = () => {
       </Head>
 
       <main style={{ margin: '20px 20%' }}>
-        PREVIEW
-        
+        <div>PREVIEW</div>
 
-        <a href={ `/api/pass?code=${url}` }>DOWNLOAD WALLET PASS</a>
+        <a href={ `/api/pass?code=${url}` }>
+          <button>DOWNLOAD WALLET PASS</button>
+        </a>
+        <Link href='/'>
+          <button>TRY AGAIN || GO HOME</button>
+          </Link>
+
+        <pre>
+          {JSON.stringify(data, null, 4)}
+        </pre>
+
+       
       </main>
     </div>
   )

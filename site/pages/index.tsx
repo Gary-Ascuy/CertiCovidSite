@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -18,7 +19,9 @@ const Home: NextPage = () => {
           Welcome to Certi Covid
         </h1>
 
-        <Link href='/pass/scan'>SCAN</Link>
+        <Link href='/pass/scan'>
+          <button>SCAN</button>
+        </Link>
       </main>
 
       <footer className={styles.footer}>

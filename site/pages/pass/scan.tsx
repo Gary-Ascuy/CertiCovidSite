@@ -12,7 +12,7 @@ const About: NextPage = () => {
 
   const handleScan = (data: string | null) => {
     if (data) {
-      sessionStorage.setItem('covid-scan-url', data)
+      window.sessionStorage.setItem('covid-scan-url', data)
       router.push('/pass/preview')
     }
   }
