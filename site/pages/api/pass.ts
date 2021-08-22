@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getCacheTemplate, buildApplePass } from '../../lib/api/template'
+import { getCacheTemplate, buildApplePass } from '../../lib/services/template'
 
 export default async function handler(
   req: NextApiRequest,
