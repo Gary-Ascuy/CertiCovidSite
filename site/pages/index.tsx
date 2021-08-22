@@ -1,6 +1,7 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -16,7 +17,7 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           Welcome to Certi Covid
         </h1>
-        <a href="http://localhost:3666/api/pass">DOWNLOAD</a>
+        <a href="/api/pass">DOWNLOAD</a>
       </main>
 
       <footer className={styles.footer}>
