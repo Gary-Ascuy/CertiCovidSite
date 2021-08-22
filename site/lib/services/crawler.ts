@@ -35,10 +35,10 @@ export async function getData(url: string): Promise<PersonalData> {
   const dom = new JSDOM(html)
 
   const panel = dom.window.document.querySelector('.panel-success')
-  if (!panel) return { success: false, data: {}, length: 0 } // improve
+  if (!panel) return { success: false, data: {}, length: 0 }
 
   const container = panel.querySelector('.panel-body')
-  if (!container) return { success: false, data: {}, length: 0 } // improve
+  if (!container) return { success: false, data: {}, length: 0 }
 
   const items = container.querySelectorAll('*')
   const length = items.length
