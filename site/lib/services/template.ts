@@ -45,5 +45,7 @@ export interface DataInput {
 }
 
 export function buildApplePass(data: DataInput): Partial<ApplePass> {
-  return {}
+  const value = new Date().toLocaleTimeString()
+  const name = { key: 'primary', label: 'Name', value }
+  return { generic: { primaryFields: [name] } }
 }
