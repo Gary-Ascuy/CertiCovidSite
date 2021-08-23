@@ -1,4 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
+/* eslint-disable @next/next/no-html-link-for-pages */
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
