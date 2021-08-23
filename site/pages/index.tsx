@@ -55,6 +55,11 @@ const Home: NextPage = () => {
 
   return (
     <div className='md:w-2/3 xl:w-2/5 md:mx-auto flex flex-col min-h-screen justify-center px-5 py-12'>
+      <Head>
+        <title>Certi Covid</title>
+        <meta name="description" content="Certi Covid" />
+        <link rel="icon" href="/assets/favicon.png" />
+      </Head>
       <main className='flex flex-col space-y-2'>
         
         {/* Title */}
