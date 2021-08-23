@@ -69,7 +69,7 @@ const Home: NextPage = () => {
 
         {/* Context */}
         <div className="flex flex-col space-y-5">
-          <div className='rounded-md p-6 bg-white dark:bg-gray-100 space-y-4 font-light'>
+          <div className='rounded-md p-6 bg-gray-100 space-y-4 font-light'>
             <p>
               Digitaliza tu Certificado de Vacunación con <span className='font-black text-primary'>CertiCovid</span>, añade tu certificado de vacunación a tus aplicaciones de billetera favoritas. En iOS, utiliza el navegador Safari.
             </p>
@@ -80,15 +80,12 @@ const Home: NextPage = () => {
           </div>
         </div>
 
-        {/* { isPrivacityPolice &&
-        } */}
-
         {/* Step 1 - Select QR/Image */}
         { isPrivacityPolice &&
           <div className="flex flex-col space-y-5">
-            <div className='rounded-md p-6 bg-white dark:bg-gray-100 space-y-4'>
+            <div className='rounded-md p-6 bg-gray-100 space-y-4'>
               <div className='flex flex-row items-center'>
-                <div className="rounded-full p-4 bg-green-400 h-5 w-5 flex items-center justify-center">
+                <div className="rounded-md p-4 bg-blue-400 h-5 w-5 flex items-center justify-center">
                   <p className="text-white text-lg font-bold">1</p>
                 </div>
                 <div className="ml-3 font-bold text-xl text-primary">Selecciona tu Certificado</div>
@@ -110,14 +107,13 @@ const Home: NextPage = () => {
             </div>
           </div>
         }
-        
 
         {/* Step 2 - Loading Data */}
         { isPrivacityPolice &&
           <div className={ `flex flex-col space-y-5 ${ data ? '' : 'opacity-50'}` }>
-            <div className='rounded-md p-6 bg-white dark:bg-gray-100 space-y-4'>
+            <div className='rounded-md p-6 bg-gray-100 space-y-4'>
               <div className='flex flex-row items-center'>
-                <div className="rounded-full p-4 bg-green-400 h-5 w-5 flex items-center justify-center">
+                <div className="rounded-md p-4 bg-blue-400 h-5 w-5 flex items-center justify-center">
                   <p className="text-white text-lg font-bold">2</p>
                 </div>
                 <div className="ml-3 font-bold text-xl text-primary">Obteniendo Datos</div>
@@ -173,9 +169,9 @@ const Home: NextPage = () => {
         {/* Step 2 - Download */}
         { isPrivacityPolice &&
           <div className={ `flex flex-col space-y-5 ${ data ? '' : 'opacity-50'}` }>
-            <div className='rounded-md p-6 bg-white dark:bg-gray-100 space-y-4'>
+            <div className='rounded-md p-6 bg-gray-100 space-y-4'>
               <div className='flex flex-row items-center'>
-                <div className="rounded-full p-4 bg-green-400 h-5 w-5 flex items-center justify-center">
+                <div className="rounded-md p-4 bg-blue-400 h-5 w-5 flex items-center justify-center">
                   <p className="text-white text-lg font-bold">3</p>
                 </div>
                 <div className="ml-3 font-bold text-xl text-primary">Añade a Billetera</div>
