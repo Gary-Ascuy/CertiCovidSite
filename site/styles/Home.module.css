@@ -1,121 +1,69 @@
-.container {
-  min-height: 100vh;
-  padding: 0 0.5rem;
+
+.header {
+  padding-top: 45px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
-}
-
-.main {
-  padding: 5rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-}
-
-.footer {
-  width: 100%;
-  height: 100px;
-  border-top: 1px solid #eaeaea;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
 }
 
 .title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
+  font-size: 45px;
+  color: #006C9D;
+  padding: 0px 10px;
 }
 
-.title,
-.description {
-  text-align: center;
-}
-
-.description {
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
-
-.grid {
+.content {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
-  margin-top: 3rem;
+  flex-direction: row;
 }
 
-.card {
-  margin: 1rem;
-  padding: 1.5rem;
+.side {
+  flex: auto;
+  max-width: 50%;
+}
+
+.image {
+  text-align: right;
+}
+
+.principal {
   text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  width: 45%;
+  padding: 50px 20px 20px 20px;
 }
 
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+.principal .titleSteps {
+  font-size: 24px;
+  color: #5A6A72;
+  font-weight: bold;
 }
 
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
+.principal .description {
+  font-size: 16px;
+  padding: 24px 0px;
+  color: #5A6A72;
+  font-weight: 300;
 }
 
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
+.principal .titleSteps span {
+  color: #006C9D;
 }
 
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
+.principal .stepText span {
+  color: #006C9D;
 }
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
+.principal .stepText {
+  padding: 20px 0px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.cam {
+  padding: 10px 40px;
+  margin: 0px 50px;
+}
+
+.footer {
+  text-align: right;
+  padding: 10px 30px;
 }
