@@ -6,19 +6,17 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
-import { useEffect, useState } from 'react'
-import { NextSeo } from 'next-seo'
+import React, { useEffect, useState } from 'react'
 
 import Metadata from '../lib/components/Metadata'
 import Step from '../lib/components/Step'
 import Preview from '../lib/components/Preview'
+import Seo from '../lib/components/Seo'
 
 import { ResponsePayload } from '../lib/models/ResponsePayload'
 import { VaccinationInformation } from '../lib/models/VaccinationInformation'
 
-const QrReader = dynamic(() => import('react-qr-reader'), {
-  ssr: false
-})
+const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false })
 
 const Home: NextPage = () => {
   const router = useRouter()
@@ -60,30 +58,8 @@ const Home: NextPage = () => {
 
   return (
     <div className='md:w-2/3 xl:w-2/5 md:mx-auto flex flex-col min-h-screen justify-center px-5 py-12'>
-      <Head>
-        <Metadata></Metadata>
-      </Head>
-
-      <NextSeo
-        noindex={true}
-        title='CertiCovid - Certificado Digital de Vacuna'
-        description='CertiCovid convierte tu certificado de vacuna en una versión digital para que lo lleves en tu celular'
-
-        openGraph={{
-          title: 'CertiCovid - Certificado Digital de Vacuna',
-          description: 'CertiCovid convierte tu certificado de vacuna en una versión digital para que lo lleves en tu celular',
-          type: 'website',
-          url: 'https://bo.certicovid.me',
-          images: [
-            {
-              url: 'https://bo.certicovid.me/assets/cover.png',
-              width: 387,
-              height: 425,
-              alt: 'CertiCovid Cover',
-            },
-          ],
-        }}
-      />
+      <Head><Metadata></Metadata></Head>
+      <Seo />
 
       {/* CONTENT */}
       <main className='flex flex-col space-y-2'>
@@ -171,7 +147,7 @@ const Home: NextPage = () => {
                 
                 <div></div>
 
-                <a onClick={() => alert('Under Construction')} href='javascript:void'>
+                <a onClick={() => alert('Under Construction')} href='#'>
                   <Image src='/assets/buttons/download_pdf.png' height={85} width={210} alt='download pdf button'></Image>
                 </a>
               </div>
