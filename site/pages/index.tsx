@@ -112,9 +112,9 @@ const Home: NextPage = () => {
         {isPrivacityPolice &&
           <Step step='2' title='Obtener Datos' enabled={!!data} >
             <div className='space-y-5 font-light'>
-              <p>Recabando información de tu certificado del sitio oficial del ministerio de salud. Estamos validando tu información, esto tomará unos segundos.</p>
+              <p>Recabando información de tu certificado del sitio oficial del ministerio de salud. Esto tomará unos segundos.</p>
 
-              {!isLoading &&
+              {isLoading &&
                 <div className='flex flex-row items-center justify-center space-x-1'>
                   <span>
                     <svg className="animate-spin h-10 w-10 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
