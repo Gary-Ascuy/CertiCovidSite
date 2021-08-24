@@ -5,10 +5,10 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
+import { NextSeo } from 'next-seo'
 
 const QrReader = dynamic(() => import('react-qr-reader'), {
   ssr: false
@@ -21,7 +21,7 @@ const Home: NextPage = () => {
   const [code, setCode] = useState('')
   const [isCamVisible, setIsCamVisible] = useState(false)
   const [isPrivacityPolice, setIsPrivacityPolice] = useState(true)
-  
+
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState<unknown | null>(null)
   const [hasError, setHasError] = useState<unknown | null>(null)
@@ -56,16 +56,52 @@ const Home: NextPage = () => {
   return (
     <div className='md:w-2/3 xl:w-2/5 md:mx-auto flex flex-col min-h-screen justify-center px-5 py-12'>
       <Head>
-        <title>Certi Covid</title>
-        <meta name="description" content="Certi Covid" />
-        <link rel="icon" href="/assets/favicon.png" />
+        <title>CertiCovid - Certificado Digital de Vacuna</title>
+        <meta name="description" content="CertiCovid convierte tu certificado de vacuna en una versión digital para que lo lleves en tu celular" />
+
+        <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicon/apple-icon-57x57.png"></link>
+        <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicon/apple-icon-60x60.png"></link>
+        <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicon/apple-icon-72x72.png"></link>
+        <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicon/apple-icon-76x76.png"></link>
+        <link rel="apple-touch-icon" sizes="114x114" href="/assets/favicon/apple-icon-114x114.png"></link>
+        <link rel="apple-touch-icon" sizes="120x120" href="/assets/favicon/apple-icon-120x120.png"></link>
+        <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicon/apple-icon-144x144.png"></link>
+        <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicon/apple-icon-152x152.png"></link>
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-icon-180x180.png"></link>
+        <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon/android-icon-192x192.png"></link>
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png"></link>
+        <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon/favicon-96x96.png"></link>
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png"></link>
       </Head>
+
+      <NextSeo
+        noindex={true}
+        title='CertiCovid - Certificado Digital de Vacuna'
+        description='CertiCovid convierte tu certificado de vacuna en una versión digital para que lo lleves en tu celular'
+
+        openGraph={{
+          title: 'CertiCovid - Certificado Digital de Vacuna',
+          description: 'CertiCovid convierte tu certificado de vacuna en una versión digital para que lo lleves en tu celular',
+          type: 'website',
+          url: 'https://bo.certicovid.me',
+          images: [
+            {
+              url: 'https://bo.certicovid.me/assets/cover.png',
+              width: 387,
+              height: 425,
+              alt: 'CertiCovid Cover',
+            },
+          ],
+        }}
+      />
+
+      {/* CONTENT */}
       <main className='flex flex-col space-y-2'>
-        
+
         {/* Title */}
         <div className='flex flex-row items-center p-3 justify-center space-x-1'>
           <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-shield-check" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#006C9D" fill="none" strokeLinecap="round" strokeLinejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M9 12l2 2l4 -4" />
             <path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3" />
           </svg>
@@ -86,7 +122,7 @@ const Home: NextPage = () => {
         </div>
 
         {/* Step 1 - Select QR/Image */}
-        { isPrivacityPolice &&
+        {isPrivacityPolice &&
           <div className="flex flex-col space-y-5">
             <div className='rounded-md p-6 bg-gray-100 space-y-4'>
               <div className='flex flex-row items-center'>
@@ -100,9 +136,9 @@ const Home: NextPage = () => {
                 <div className='space-y-5 font-light'>
                   <p>Escanea el código QR de tu certificado o selecciona una captura de pantalla o la página PDF con el código QR</p>
                   <div className='grid grid-cols-1 md:grid-cols-1 gap-5'>
-                    <button onClick={() => setIsCamVisible(!isCamVisible)} type="button" className="focus:outline-none h-8 bg-primary text-sm text-white hover:bg-primary-hover font-semibold rounded-md">{isCamVisible ? 'Ocultar Cámara' : 'Iniciar Cámara' }</button>
+                    <button onClick={() => setIsCamVisible(!isCamVisible)} type="button" className="focus:outline-none h-8 bg-primary text-sm text-white hover:bg-primary-hover font-semibold rounded-md">{isCamVisible ? 'Ocultar Cámara' : 'Iniciar Cámara'}</button>
                   </div>
-                  { isCamVisible &&
+                  {isCamVisible &&
                     <div>
                       <QrReader delay={300} onError={handleCamError} onScan={handleCamScan} />
                     </div>
@@ -114,8 +150,8 @@ const Home: NextPage = () => {
         }
 
         {/* Step 2 - Loading Data */}
-        { isPrivacityPolice &&
-          <div className={ `flex flex-col space-y-5 ${ data ? '' : 'opacity-50'}` }>
+        {isPrivacityPolice &&
+          <div className={`flex flex-col space-y-5 ${data ? '' : 'opacity-50'}`}>
             <div className='rounded-md p-6 bg-gray-100 space-y-4'>
               <div className='flex flex-row items-center'>
                 <div className="rounded-md p-4 bg-blue-400 h-5 w-5 flex items-center justify-center">
@@ -127,7 +163,7 @@ const Home: NextPage = () => {
               <div className='text-lg'>
                 <div className='space-y-5 font-light'>
                   <p>Solicitando informaicon para la generacion de certificado digital.</p>
-                  { isLoading &&
+                  {isLoading &&
                     <div className='flex flex-row items-center justify-center space-x-1'>
                       <span>
                         <svg className="animate-spin h-10 w-10 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -137,11 +173,11 @@ const Home: NextPage = () => {
                       </span>
                     </div>
                   }
-                  { hasError &&
+                  {hasError &&
                     <div className='bg-red-200 rounded-md text-center text-red-900 py-5'>No es posible optener datos del servidor, intente mas tarde</div>
                   }
 
-                  { data &&
+                  {data &&
                     <div className='grid gap-4 grid-cols-2'>
                       <div className='col-span-2'>
                         <div className='text-gray-400 text-sm'>Nombres y Apellidos</div>
@@ -172,8 +208,8 @@ const Home: NextPage = () => {
         }
 
         {/* Step 2 - Download */}
-        { isPrivacityPolice &&
-          <div className={ `flex flex-col space-y-5 ${ data ? '' : 'opacity-50'}` }>
+        {isPrivacityPolice &&
+          <div className={`flex flex-col space-y-5 ${data ? '' : 'opacity-50'}`}>
             <div className='rounded-md p-6 bg-gray-100 space-y-4'>
               <div className='flex flex-row items-center'>
                 <div className="rounded-md p-4 bg-blue-400 h-5 w-5 flex items-center justify-center">
