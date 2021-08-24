@@ -1,4 +1,6 @@
 import { ApplePass, BarcodeDescriptor } from "@walletpass/pass-js/dist/interfaces"
+import { v4 as uuid } from 'uuid'
+
 import { ResponsePayload } from "../models/ResponsePayload"
 import { VaccinationInformation } from "../models/VaccinationInformation"
 
@@ -34,10 +36,8 @@ export function buildApplePass(urlBase64: string, personalData: ResponsePayload<
 
   // Base Fields
   const baseFields = {
-    serialNumber: '12345', // TODO: Update with UUID
+    serialNumber: uuid(),
     description: 'Carnet de Vacunación',
-    backgroundColor: 'rgb(2,60,82)',
-    foregroundColor: 'rgb(255,255,255)',
     logoText: 'Carnet de Vacunación',
   }
 
