@@ -88,11 +88,11 @@ const Home: NextPage = () => {
           </div>
         </div>
 
-        {/* Step 1 - Select QR/Image */}
+        {/* Step 1 - Cargar Certificado */}
         {isPrivacityPolice &&
-          <Step step='1' title='Selecciona tu Certificado' >
+          <Step step='1' title='Cargar Certificado' >
             <div className='space-y-5 font-light'>
-              <p>Escanea el código QR de tu certificado usando la cámara de tu dispositivo o selecciona una imagen (PDF, Captura donde se vea claramente el QR) y súbela.</p>
+              <p>Escanea el código QR de tu certificado usando la cámara de tu dispositivo o selecciona y sube una imagen (PDF, Captura donde se vea claramente el QR).</p>
               <div className='grid grid-cols-1 md:grid-cols-1 gap-5'>
                 <button onClick={() => setIsCamVisible(!isCamVisible)} type="button"
                   className="focus:outline-none h-8 bg-primary text-sm text-white hover:bg-primary-hover font-semibold rounded-md">
@@ -108,13 +108,13 @@ const Home: NextPage = () => {
           </Step>
         }
 
-        {/* Step 2 - Data Validation */}
+        {/* Step 2 - Obtener Datos */}
         {isPrivacityPolice &&
-          <Step step='2' title='Validando Datos' enabled={!!data} >
+          <Step step='2' title='Obtener Datos' enabled={!!data} >
             <div className='space-y-5 font-light'>
-              <p>Estamos validando tu informacion....</p>
+              <p>Recabando información de tu certificado del sitio oficial del ministerio de salud. Estamos validando tu información, esto tomará unos segundos.</p>
 
-              {isLoading &&
+              {!isLoading &&
                 <div className='flex flex-row items-center justify-center space-x-1'>
                   <span>
                     <svg className="animate-spin h-10 w-10 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -122,6 +122,7 @@ const Home: NextPage = () => {
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
                   </span>
+                  &nbsp;&nbsp;Validando...
                 </div>
               }
 
@@ -136,11 +137,11 @@ const Home: NextPage = () => {
           </Step>
         }
 
-        {/* Step 2 - Download */}
+        {/* Step 3 - Descargar Certificado */}
         {isPrivacityPolice &&
           <Step step='3' title='Descargar Certificado' enabled={!!data}>
             <div className='space-y-5 font-light'>
-              <p>Puedes añadirlo directamente a tu billetera móvil (ej. AppleWallet en iOS y WalletPasses en Android) o descargar un pdf en un formato amigable para celulares.</p>
+              <p>Puedes añadirlo directamente a tu billetera móvil (ej. AppleWallet en iOS y WalletPasses en Android) o descargar un PDF en un formato amigable para celulares.</p>
               <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
                 <a href={`/api/v1/pass?code=${code}`}>
                   <Image src='/assets/buttons/Add_to_Apple_Wallet_rgb_ES.svg' height={100} width={300} alt='apple wallet button'></Image>
