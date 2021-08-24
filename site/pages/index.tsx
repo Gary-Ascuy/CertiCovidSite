@@ -140,7 +140,7 @@ const Home: NextPage = () => {
         {isPrivacityPolice &&
           <Step step='3' title='Descargar Certificado' enabled={!!data}>
             <div className='space-y-5 font-light'>
-              <p>Descarga tu certificado, puedes añadirlo directamente a tu billetera (wallet) o descargar un pdf en un formato amigable para tu celular.</p>
+              <p>Puedes añadirlo directamente a tu billetera móvil (ej. AppleWallet en iOS y WalletPasses en Android) o descargar un pdf en un formato amigable para celulares.</p>
               <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
                 <a href={`/api/v1/pass?code=${code}`}>
                   <Image src='/assets/buttons/Add_to_Apple_Wallet_rgb_ES.svg' height={100} width={300} alt='apple wallet button'></Image>
