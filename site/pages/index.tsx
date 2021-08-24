@@ -3,12 +3,18 @@
 
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { NextSeo } from 'next-seo'
+
+import Metadata from '../lib/components/Metadata'
+import Step from '../lib/components/Step'
+import Preview from '../lib/components/Preview'
+
+import { ResponsePayload } from '../lib/models/ResponsePayload'
+import { VaccinationInformation } from '../lib/models/VaccinationInformation'
 
 const QrReader = dynamic(() => import('react-qr-reader'), {
   ssr: false
@@ -23,8 +29,8 @@ const Home: NextPage = () => {
   const [isPrivacityPolice, setIsPrivacityPolice] = useState(true)
 
   const [isLoading, setIsLoading] = useState(false)
-  const [data, setData] = useState<unknown | null>(null)
-  const [hasError, setHasError] = useState<unknown | null>(null)
+  const [data, setData] = useState<ResponsePayload<VaccinationInformation> | null>(null)
+  const [hasError, setHasError] = useState<Error | unknown | null>(null)
 
   const handleCamScan = (data: string | null) => {
     if (data) {
@@ -35,13 +41,12 @@ const Home: NextPage = () => {
   }
   const handleCamError = (error: Error) => setHasError(error)
 
-  // load data from server
   useEffect(() => {
     const loadData = async () => {
       try {
         if (!url) return
         setIsLoading(true)
-        const request = await fetch(`/api/person?code=${encodeURI(window.btoa(url))}`)
+        const request = await fetch(`/api/v1/person?code=${encodeURI(window.btoa(url))}`)
         setData(await request.json())
         setIsLoading(false)
       } catch (error) {
@@ -56,22 +61,7 @@ const Home: NextPage = () => {
   return (
     <div className='md:w-2/3 xl:w-2/5 md:mx-auto flex flex-col min-h-screen justify-center px-5 py-12'>
       <Head>
-        <title>CertiCovid - Certificado Digital de Vacuna</title>
-        <meta name="description" content="CertiCovid convierte tu certificado de vacuna en una versión digital para que lo lleves en tu celular" />
-
-        <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicon/apple-icon-57x57.png"></link>
-        <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicon/apple-icon-60x60.png"></link>
-        <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicon/apple-icon-72x72.png"></link>
-        <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicon/apple-icon-76x76.png"></link>
-        <link rel="apple-touch-icon" sizes="114x114" href="/assets/favicon/apple-icon-114x114.png"></link>
-        <link rel="apple-touch-icon" sizes="120x120" href="/assets/favicon/apple-icon-120x120.png"></link>
-        <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicon/apple-icon-144x144.png"></link>
-        <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicon/apple-icon-152x152.png"></link>
-        <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-icon-180x180.png"></link>
-        <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon/android-icon-192x192.png"></link>
-        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png"></link>
-        <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon/favicon-96x96.png"></link>
-        <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png"></link>
+        <Metadata></Metadata>
       </Head>
 
       <NextSeo
@@ -116,173 +106,80 @@ const Home: NextPage = () => {
             </p>
             <input id='privacity' defaultChecked={true} onChange={() => setIsPrivacityPolice(!isPrivacityPolice)} type='checkbox'></input>
             <label htmlFor='privacity'>&nbsp;
-              Acepto la <a target='_blank' href='/privacity' className='text-primary text-underline text-black'>Politica de Privacidad</a>
+              Acepto la <a target='_blank' href='/privacy-policy' className='text-primary text-underline text-black'>Politica de Privacidad</a>
             </label>
           </div>
         </div>
 
         {/* Step 1 - Select QR/Image */}
         {isPrivacityPolice &&
-          <div className="flex flex-col space-y-5">
-            <div className='rounded-md p-6 bg-gray-100 space-y-4'>
-              <div className='flex flex-row items-center'>
-                <div className="rounded-md p-4 bg-blue-400 h-5 w-5 flex items-center justify-center">
-                  <p className="text-white text-lg font-bold">1</p>
-                </div>
-                <div className="ml-3 font-bold text-xl text-primary">Selecciona tu Certificado</div>
+          <Step step='1' title='Selecciona tu Certificado' >
+            <div className='space-y-5 font-light'>
+              <p>Escanea el código QR de tu certificado usando la cámara de tu dispositivo o selecciona una imagen (PDF, Captura donde se vea claramente el QR) y súbela.</p>
+              <div className='grid grid-cols-1 md:grid-cols-1 gap-5'>
+                <button onClick={() => setIsCamVisible(!isCamVisible)} type="button"
+                  className="focus:outline-none h-8 bg-primary text-sm text-white hover:bg-primary-hover font-semibold rounded-md">
+                  {isCamVisible ? 'Ocultar Cámara' : 'Abrir Cámara'}
+                </button>
               </div>
-
-              <div className='text-lg'>
-                <div className='space-y-5 font-light'>
-                  <p>Escanea el código QR de tu certificado o selecciona una captura de pantalla o la página PDF con el código QR</p>
-                  <div className='grid grid-cols-1 md:grid-cols-1 gap-5'>
-                    <button onClick={() => setIsCamVisible(!isCamVisible)} type="button" className="focus:outline-none h-8 bg-primary text-sm text-white hover:bg-primary-hover font-semibold rounded-md">{isCamVisible ? 'Ocultar Cámara' : 'Iniciar Cámara'}</button>
-                  </div>
-                  {isCamVisible &&
-                    <div>
-                      <QrReader delay={300} onError={handleCamError} onScan={handleCamScan} />
-                    </div>
-                  }
+              {isCamVisible &&
+                <div>
+                  <QrReader delay={300} onError={handleCamError} onScan={handleCamScan} />
                 </div>
-              </div>
+              }
             </div>
-          </div>
+          </Step>
         }
 
-        {/* Step 2 - Loading Data */}
+        {/* Step 2 - Data Validation */}
         {isPrivacityPolice &&
-          <div className={`flex flex-col space-y-5 ${data ? '' : 'opacity-50'}`}>
-            <div className='rounded-md p-6 bg-gray-100 space-y-4'>
-              <div className='flex flex-row items-center'>
-                <div className="rounded-md p-4 bg-blue-400 h-5 w-5 flex items-center justify-center">
-                  <p className="text-white text-lg font-bold">2</p>
-                </div>
-                <div className="ml-3 font-bold text-xl text-primary">Obteniendo Datos</div>
-              </div>
+          <Step step='2' title='Validando Datos' enabled={!!data} >
+            <div className='space-y-5 font-light'>
+              <p>Estamos validando tu informacion....</p>
 
-              <div className='text-lg'>
-                <div className='space-y-5 font-light'>
-                  <p>Solicitando informaicon para la generacion de certificado digital.</p>
-                  {isLoading &&
-                    <div className='flex flex-row items-center justify-center space-x-1'>
-                      <span>
-                        <svg className="animate-spin h-10 w-10 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                      </span>
-                    </div>
-                  }
-                  {hasError &&
-                    <div className='bg-red-200 rounded-md text-center text-red-900 py-5'>No es posible optener datos del servidor, intente mas tarde</div>
-                  }
-
-                  {data &&
-                    <div className='grid gap-4 grid-cols-2'>
-                      <div className='col-span-2'>
-                        <div className='text-gray-400 text-sm'>Nombres y Apellidos</div>
-                        <div className='text-black font-medium text-lg'>Gary Ascuy Anturiano</div>
-                      </div>
-                      <div>
-                        <div className='text-gray-400 text-xs'>Nro. Documento:</div>
-                        <div className='text-black font-medium text-sm'>7654321</div>
-                      </div>
-                      <div>
-                        <div className='text-gray-400 text-xs'>Fecha de Nacimiento:</div>
-                        <div className='text-black font-medium text-sm'>01/05/2001</div>
-                      </div>
-                      <div>
-                        <div className='text-gray-400 text-xs'>Municipio:</div>
-                        <div className='text-black font-medium text-sm'>COCHABAMBA</div>
-                      </div>
-                      <div>
-                        <div className='text-gray-400 text-xs'>Fecha de Vacunación:</div>
-                        <div className='text-black font-medium text-sm'>12/08/2021</div>
-                      </div>
-                    </div>
-                  }
+              {isLoading &&
+                <div className='flex flex-row items-center justify-center space-x-1'>
+                  <span>
+                    <svg className="animate-spin h-10 w-10 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                  </span>
                 </div>
-              </div>
+              }
+
+              {hasError &&
+                <div className='bg-red-200 rounded-md text-center text-red-900 py-5'>No es posible optener datos del servidor, intente mas tarde</div>
+              }
+
+              {data && data.success && data.data &&
+                <Preview person={data.data}></Preview>
+              }
             </div>
-          </div>
+          </Step>
         }
 
         {/* Step 2 - Download */}
         {isPrivacityPolice &&
-          <div className={`flex flex-col space-y-5 ${data ? '' : 'opacity-50'}`}>
-            <div className='rounded-md p-6 bg-gray-100 space-y-4'>
-              <div className='flex flex-row items-center'>
-                <div className="rounded-md p-4 bg-blue-400 h-5 w-5 flex items-center justify-center">
-                  <p className="text-white text-lg font-bold">3</p>
-                </div>
-                <div className="ml-3 font-bold text-xl text-primary">Añade a Billetera</div>
-              </div>
+          <Step step='3' title='Descargar Certificado' enabled={!!data}>
+            <div className='space-y-5 font-light'>
+              <p>Descarga tu certificado, puedes añadirlo directamente a tu billetera (wallet) o descargar un pdf en un formato amigable para tu celular.</p>
+              <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
+                <a href={`/api/v1/pass?code=${code}`}>
+                  <Image src='/assets/buttons/Add_to_Apple_Wallet_rgb_ES.svg' height={100} width={300} alt='apple wallet button'></Image>
+                </a>
+                
+                <div></div>
 
-              <div className='text-lg'>
-                <div className='space-y-5 font-light'>
-                  <p>Descarga el certificado en tu billetera movil o de manera Digital en un formato amigable para celular.</p>
-                  <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
-                    <a href={`/api/pass?code=${code}`}>
-                      <Image src='/assets/buttons/Add_to_Apple_Wallet_rgb_ES.svg' height={64} width={210} alt='apple wallet button'></Image>
-                    </a>
-                    <div></div>
-                    <button type="button" className="focus:outline-none h-16 bg-primary text-sm text-white hover:bg-primary-hover font-semibold rounded-lg">Preview</button>
-                  </div>
-                </div>
+                <a onClick={() => alert('Under Construction')} href='javascript:void'>
+                  <Image src='/assets/buttons/download_pdf.png' height={85} width={210} alt='download pdf button'></Image>
+                </a>
               </div>
             </div>
-          </div>
+          </Step>
         }
       </main>
     </div>
-
-
-
-    // <div className={styles.container}>
-    //   <Head>
-    //     <title>Certi Covid</title>
-    //     <meta name="description" content="Certi Covid" />
-    //     <link rel="icon" href="/favicon.ico" />
-    //   </Head>
-
-    //   <main>
-    //     <h1 className={styles.header}>
-    //       <Image className={styles.cert} src='/assets/icons/cert.svg' height={40} width={40} alt='certificado'></Image>
-    //       <div className={styles.title}>CertiCovid</div>
-    //       <Image className={styles.flag} src='/assets/icons/bolivia.svg' height={40} width={40} alt='bolivia'></Image>
-    //     </h1>
-
-    //     <div className={styles.content}>
-    //       <div className={ `${styles.side} ${styles.image}` }>
-    //         <Image className={styles.flag} src='/assets/backgrounds/phone.png' height={723} width={352} alt='bolivia'></Image>
-    //       </div>
-
-    //       <div className={ `${styles.side} ${styles.principal}` } >
-    //         <div className={styles.titleSteps}>
-    //           Digitaliza tu Certificado de Vacunación con <span>CertiCovid</span>
-    //         </div>
-    //         <div className={styles.description}>
-    //           Añade tu certificado de Vacunación a tus aplicaciones de billetera favoritas. En iOS, utiliza el navegador Safari.
-    //         </div>
-    //         <div className={styles.stepText}>
-    //           <span>1.</span> Escanea el código QR de tu certificado o selecciona una captura de pantalla o la página PDF con el código QR
-    //         </div>
-
-    //         <Button className={styles.cam} onClick={() => router.push('/covid/scan')} text='Iniciar Cámara'></Button>
-
-    //         <div className={styles.stepText}>
-    //           <span>2.</span> Descarga el certificado en tu billetera movil o de manera Digital en un formato amigable para celular.
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </main>
-
-    //   <footer className={styles.footer}>
-    //     <a href="https://github.com/Gary-Ascuy/Covid-Cert" target="_blank" rel="noopener noreferrer">
-    //       Powered by Covid Friends
-    //     </a>
-    //   </footer>
-    // </div>
   )
 }
 

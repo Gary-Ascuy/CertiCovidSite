@@ -47,7 +47,6 @@ const Preview: NextPage = () => {
         <pre>
           {JSON.stringify(data, null, 4)}
         </pre>
-
        
       </main>
     </div>
