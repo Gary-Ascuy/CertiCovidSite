@@ -167,7 +167,7 @@ const Home: NextPage = () => {
 
         {/* Step 3 - Descargar Certificado */}
         {isPrivacityPolice &&
-          <Step step='3' title='Descargar Certificado' enabled={!data}>
+          <Step step='3' title='Descargar Certificado' enabled={!!data}>
             <div className='space-y-5 font-light'>
               <p>Puedes añadirlo directamente a tu billetera móvil (ej. AppleWallet en iOS y WalletPasses en Android) o descargar un PDF en un formato amigable para celulares.</p>
               <div className='grid grid-cols-3 gap-5'>
