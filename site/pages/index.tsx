@@ -15,6 +15,7 @@ import Seo from '../lib/components/Seo'
 
 import { ResponsePayload } from '../lib/models/ResponsePayload'
 import { VaccinationInformation } from '../lib/models/VaccinationInformation'
+import Header from '../lib/components/Header'
 
 const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false })
 
@@ -63,16 +64,8 @@ const Home: NextPage = () => {
 
       {/* CONTENT */}
       <main className='flex flex-col space-y-2'>
-
         {/* Title */}
-        <div className='flex flex-row items-center p-3 justify-center space-x-1'>
-          <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-shield-check" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#006C9D" fill="none" strokeLinecap="round" strokeLinejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M9 12l2 2l4 -4" />
-            <path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3" />
-          </svg>
-          <div className='text-3xl font-bold text-primary'>CertiCovid Bolivia</div>
-        </div>
+        <Header></Header>
 
         {/* Context */}
         <div className="flex flex-col space-y-5">
@@ -80,9 +73,17 @@ const Home: NextPage = () => {
             <p>
               Digitaliza tu Certificado de Vacunación con <span className='font-black text-primary'>CertiCovid</span>, añade tu certificado de vacunación a tus aplicaciones de billetera favoritas. En iOS, utiliza el navegador Safari.
             </p>
+
             <input id='privacity' defaultChecked={true} onChange={() => setIsPrivacityPolice(!isPrivacityPolice)} type='checkbox'></input>
             <label htmlFor='privacity'>&nbsp;
-              Acepto la <a target='_blank' href='/privacy-policy' className='text-primary text-underline text-black'>Politica de Privacidad</a>
+              Acepto las&nbsp;
+              <a target='_blank' href='/terms-of-service' className='text-primary text-underline text-black'>
+                Condiciones del servicio
+              </a>
+              &nbsp;y la&nbsp;
+              <a target='_blank' href='/privacy-policy' className='text-primary text-underline text-black'>
+                Politica de Privacidad
+              </a>.
             </label>
           </div>
         </div>
@@ -144,7 +145,7 @@ const Home: NextPage = () => {
                 <a href={`/api/v1/pass?code=${code}`}>
                   <Image src='/assets/buttons/Add_to_Apple_Wallet_rgb_ES.svg' height={100} width={300} alt='apple wallet button'></Image>
                 </a>
-                
+
                 <div></div>
 
                 <a onClick={() => alert('Under Construction')} href='#'>

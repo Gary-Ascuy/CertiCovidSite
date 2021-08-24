@@ -6,6 +6,7 @@ export interface PreviewProps {
 
 export default function Preview({ person }: PreviewProps) {
   const { name, ci, birthday, municipality, vaccinationDate } = person
+
   return (
     <div className='grid gap-4 grid-cols-2'>
       <div className='col-span-2'>
