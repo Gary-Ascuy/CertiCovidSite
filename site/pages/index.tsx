@@ -69,6 +69,8 @@ const Home: NextPage = () => {
         if (!!selectedFile) {
           const url = await getUrlFromFile(selectedFile)
           setUrl(url)
+          setCode(encodeURI(window.btoa(url)))
+          setIsCamVisible(false)
         }
       } catch (error) {
         setHasError(error)
