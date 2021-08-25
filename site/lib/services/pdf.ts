@@ -63,5 +63,5 @@ export async function exportToPdf(url: string, vaccine: VaccinationInformation) 
   })
 
   const bytes = await pdf.save()
-  saveAs(new Blob([bytes]), `CertiCovid_${new Date().toISOString().substr(0, 10)}.pdf`)
+  saveAs(new Blob([bytes]), `CertiCovid_${new Date().toISOString().replace(/\W/g, '_')}.pdf`)
 }
