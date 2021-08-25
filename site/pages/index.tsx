@@ -4,7 +4,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import React, { useEffect, useRef, useState } from 'react'
 
@@ -17,6 +16,7 @@ import { ResponsePayload } from '../lib/models/ResponsePayload'
 import { VaccinationInformation } from '../lib/models/VaccinationInformation'
 import Header from '../lib/components/Header'
 import { getUrlFromFile } from '../lib/services/file'
+import { exportToPdf } from '../lib/services/pdf'
 
 const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false })
 
@@ -178,7 +178,7 @@ const Home: NextPage = () => {
 
                 <div></div>
 
-                <a onClick={() => alert('Under Construction')} href='#'>
+                <a onClick={() => data && data.data && exportToPdf(url, data.data)} href='javascript:void(0)'>
                   <Image src='/assets/buttons/Add_to_PDF.svg' height={100} width={300} alt='download pdf button'></Image>
                 </a>
               </div>

@@ -56,7 +56,7 @@ export async function getData(url: string): Promise<ResponsePayload<VaccinationI
     supplier: info['PROVEEDOR'],
     lot: info['LOTE'],
     consentNumber: info['NRO CONSENTIMIENTO'],
-    nextVaccinationDate: info['FECHA PROXIMA VACUNACION']
+    nextVaccinationDate: info['FECHA PROXIMA VACUNACION'] || 'Vacuna al día'
   }
 
   const personalData = { success: true, data, url }
