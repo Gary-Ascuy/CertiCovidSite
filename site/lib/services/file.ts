@@ -42,27 +42,17 @@ export async function getImageDataFromPdf(fileBuffer: ArrayBuffer): Promise<Imag
   if (!canvasContext) throw new Error('Unable to create context')
 
   let loadingTask = PdfJS.getDocument(typedArray)
-
   await loadingTask.promise.then(async function (pdfDocument) {
-    // Load last PDF page
     const pageNumber = pdfDocument.numPages
-
     const pdfPage = await pdfDocument.getPage(pageNumber)
     const viewport = pdfPage.getViewport({ scale: pdfScale })
 
-    // Set correct canvas width / height
     canvas.width = viewport.width
     canvas.height = viewport.height
-
-    // render PDF
-    const renderTask = pdfPage.render({
-      canvasContext: canvasContext,
-      viewport,
-    })
+    const renderTask = pdfPage.render({ canvasContext, viewport })
 
     return await renderTask.promise
   })
 
-  // Return PDF Image Data
   return canvasContext.getImageData(0, 0, canvas.width, canvas.height)
 }
