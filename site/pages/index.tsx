@@ -21,8 +21,6 @@ import { getUrlFromFile } from '../lib/services/file'
 const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false })
 
 const Home: NextPage = () => {
-  const router = useRouter()
-
   const [url, setUrl] = useState('')
   const [code, setCode] = useState('')
   const [isCamVisible, setIsCamVisible] = useState(false)
@@ -68,6 +66,7 @@ const Home: NextPage = () => {
         const selectedFile = (input?.current?.files || [])[0]
         if (!!selectedFile) {
           const url = await getUrlFromFile(selectedFile)
+
           setUrl(url)
           setCode(encodeURI(window.btoa(url)))
           setIsCamVisible(false)
@@ -121,6 +120,7 @@ const Home: NextPage = () => {
                   {isCamVisible ? 'Ocultar Cámara' : 'Abrir Cámara'}
                 </button>
 
+                <canvas id='canvas' className='hidden' />
                 <input type='file' id='file' className='hidden' accept='application/pdf,image/png' ref={input} />
                 <label htmlFor='file'
                   className='focus:outline-none h-8 bg-primary text-sm text-white hover:bg-primary-hover text-center leading-8 font-semibold rounded-md'>

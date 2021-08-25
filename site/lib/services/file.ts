@@ -1,13 +1,24 @@
 import { PNG } from 'pngjs'
-import jsQR, { QRCode } from 'jsqr'
+import jsQR, { Options, QRCode } from 'jsqr'
+import * as PdfJS from 'pdfjs-dist'
+
+PdfJS.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PdfJS.version}/pdf.worker.js`
+
+const options: Options = { inversionAttempts: 'dontInvert' }
+
+export const loaders: { [key: string]: (fileBuffer: ArrayBuffer) => Promise<ImageData> } = {
+  'application/pdf': (fileBuffer: ArrayBuffer) => getImageDataFromPdf(fileBuffer),
+  'image/png': (fileBuffer: ArrayBuffer) => getImageDataFromPng(fileBuffer),
+}
 
 export async function getUrlFromFile(file: File): Promise<string> {
   const fileBuffer = await file.arrayBuffer()
-  const image = await getImageDataFromPng(fileBuffer)
-  const code: QRCode | null = jsQR(image.data, image.width, image.height, {
-    inversionAttempts: 'dontInvert',
-  })
 
+  const loader = loaders[file.type]
+  if (!loader) throw Error('does not exist loader')
+  const { data, width, height } = await loader(fileBuffer)
+
+  const code: QRCode | null = jsQR(data, width, height, options)
   if (!code) throw new Error('Invalida data')
   return code.data
 }
@@ -20,4 +31,38 @@ export async function getImageDataFromPng(fileBuffer: ArrayBuffer): Promise<Imag
       resolve(data)
     })
   })
+}
+
+export async function getImageDataFromPdf(fileBuffer: ArrayBuffer): Promise<ImageData> {
+  const typedArray = new Uint8Array(fileBuffer)
+  const pdfScale = 2
+
+  const canvas = <HTMLCanvasElement>document.getElementById('canvas')
+  const canvasContext = canvas.getContext('2d')
+  if (!canvasContext) throw new Error('Unable to create context')
+
+  let loadingTask = PdfJS.getDocument(typedArray)
+
+  await loadingTask.promise.then(async function (pdfDocument) {
+    // Load last PDF page
+    const pageNumber = pdfDocument.numPages
+
+    const pdfPage = await pdfDocument.getPage(pageNumber)
+    const viewport = pdfPage.getViewport({ scale: pdfScale })
+
+    // Set correct canvas width / height
+    canvas.width = viewport.width
+    canvas.height = viewport.height
+
+    // render PDF
+    const renderTask = pdfPage.render({
+      canvasContext: canvasContext,
+      viewport,
+    })
+
+    return await renderTask.promise
+  })
+
+  // Return PDF Image Data
+  return canvasContext.getImageData(0, 0, canvas.width, canvas.height)
 }
