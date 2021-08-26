@@ -48,11 +48,18 @@ const Home: NextPage = () => {
       setData(null)
       setCode(null)
 
-      console.log('Trying to update URL with:', value)
-      const { url } = validateQrData(value)
+      // Adding workaround
+      // const { url } = validateQrData(value)
+      if (!/^https\:\/\/sus\.minsalud\.gob\.bo/gi.test(value)) {
+        setUrl('') // TODO: Fixme
+        setCode('')
+        setError('El QR que intenta escanear no corresponde al de la Vacuna')
+        return
+      }
 
-      setUrl(url)
+      const url = value
       setCode(encodeURI(window.btoa(url)))
+      setUrl(url)
     } catch (error) {
       setErrorMessage(error)
     }
