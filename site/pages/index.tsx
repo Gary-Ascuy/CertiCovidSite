@@ -5,7 +5,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import _ from 'lodash'
 
 import Metadata from '../lib/components/Metadata'
 import Step from '../lib/components/Step'
@@ -17,12 +18,13 @@ import { VaccinationInformation } from '../lib/models/VaccinationInformation'
 import Header from '../lib/components/Header'
 import { getUrlFromFile } from '../lib/services/file'
 import { exportToPdf } from '../lib/services/pdf'
+import { validateQrData } from '../lib/services/validation'
 
 const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false })
 
 const Home: NextPage = () => {
   const [url, setUrl] = useState('')
-  const [code, setCode] = useState('')
+  const [code, setCode] = useState<string | null>('')
   const [isCamVisible, setIsCamVisible] = useState(false)
   const [isPrivacityPolice, setIsPrivacityPolice] = useState(true)
 
@@ -30,28 +32,51 @@ const Home: NextPage = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState<ResponsePayload<VaccinationInformation> | null>(null)
-  const [hasError, setHasError] = useState<Error | unknown | null>(null)
+  const [error, setError] = useState<unknown | null>(null)
+
+  const setErrorMessage = (error: unknown) => {
+    const message = _.isObject(error) ? (error as any)?.message : error
+    setError(message || 'Error inesperado')
+  }
+
+  const validateAndUpdateUrl = useCallback((value: string) => {
+    if (!value) return
+
+    try {
+      setError(null)
+      setData(null)
+      setCode(null)
+
+      console.log('Trying to update URL with:', value)
+      const { url } = validateQrData(value)
+
+      setUrl(url)
+      setCode(encodeURI(window.btoa(url)))
+    } catch (error) {
+      setErrorMessage(error)
+    }
+  }, [])
 
   const handleCamScan = (data: string | null) => {
     if (data) {
-      setUrl(data)
-      setCode(encodeURI(window.btoa(data)))
+      validateAndUpdateUrl(data)
       setIsCamVisible(false)
     }
   }
-  const handleCamError = (error: Error) => setHasError(error)
+  const handleCamError = (error: Error) => setErrorMessage(error)
 
   useEffect(() => {
+    if (!url) return
+
     const loadData = async () => {
       try {
-        if (!url) return
         setIsLoading(true)
         const request = await fetch(`/api/v1/person?code=${encodeURI(window.btoa(url))}`)
         setData(await request.json())
         setIsLoading(false)
       } catch (error) {
         setIsLoading(false)
-        setHasError(error)
+        setErrorMessage('No es posible obtener datos del servidor, intente mas tarde')
       }
     }
 
@@ -63,20 +88,22 @@ const Home: NextPage = () => {
 
     const processFile = async () => {
       try {
-        const selectedFile = (input?.current?.files || [])[0]
+        const file = input?.current
+        const selectedFile = (file?.files || [])[0]
         if (!!selectedFile) {
           const url = await getUrlFromFile(selectedFile)
 
-          setUrl(url)
-          setCode(encodeURI(window.btoa(url)))
+          validateAndUpdateUrl(url)
           setIsCamVisible(false)
         }
       } catch (error) {
-        setHasError(error)
+        setErrorMessage(error)
       }
     }
-    input.current.addEventListener('input', processFile);
-  }, [input])
+
+    input.current.addEventListener('input', processFile)
+    return () => input?.current?.removeEventListener('input', processFile)
+  }, [input, validateAndUpdateUrl])
 
   return (
     <div className='md:w-2/3 xl:w-2/5 md:mx-auto flex flex-col min-h-screen justify-center px-5 py-12'>
@@ -138,7 +165,7 @@ const Home: NextPage = () => {
 
         {/* Step 2 - Obtener Datos */}
         {isPrivacityPolice &&
-          <Step step='2' title='Obtener Datos' enabled={!!data} >
+          <Step step='2' title='Obtener Datos' enabled={!!data || isLoading || !!error} >
             <div className='space-y-5 font-light'>
               <p>Recabando información de tu certificado del sitio oficial del ministerio de salud. Esto tomará unos segundos.</p>
 
@@ -154,11 +181,11 @@ const Home: NextPage = () => {
                 </div>
               }
 
-              {hasError &&
-                <div className='bg-red-200 rounded-md text-center text-red-900 py-5'>No es posible optener datos del servidor, intente mas tarde</div>
+              {error &&
+                <div className='bg-red-200 rounded-md text-center text-red-900 py-5'>{error}.</div>
               }
 
-              {data && data.success && data.data &&
+              {data && data.success &&
                 <Preview person={data.data}></Preview>
               }
             </div>
@@ -171,16 +198,16 @@ const Home: NextPage = () => {
             <div className='space-y-5 font-light'>
               <p>Puedes añadirlo directamente a tu billetera móvil (ej. AppleWallet en iOS y WalletPasses en Android) o descargar un PDF en un formato amigable para celulares.</p>
               <div className='grid grid-cols-3 gap-5'>
-                <a href={`/api/v1/pass?code=${code}`}>
+                <a href={code ? `/api/v1/pass?code=${code}` : '#'}>
                   <Image src='/assets/buttons/Add_to_Apple_Wallet_rgb_ES.svg' height={100} width={300} alt='apple wallet button'></Image>
                   <div className='text-sm text-center'>Compatible con Android Wallets</div>
                 </a>
 
                 <div></div>
 
-                <a onClick={() => data && data.data && exportToPdf(url, data.data)} href='javascript:void(0)'>
+                <div className='cursor-pointer' onClick={() => data && data.data && exportToPdf(url, data.data)}>
                   <Image src='/assets/buttons/Add_to_PDF.svg' height={100} width={300} alt='download pdf button'></Image>
-                </a>
+                </div>
               </div>
             </div>
           </Step>

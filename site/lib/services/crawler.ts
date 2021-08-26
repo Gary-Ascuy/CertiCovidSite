@@ -4,6 +4,7 @@ import { get } from './fetch'
 import manager from 'cache-manager'
 import { VaccinationInformation } from '../models/VaccinationInformation'
 import { ResponsePayload } from '../models/ResponsePayload'
+import { validateQrData } from './validation'
 
 const cache = manager.caching({ store: 'memory', max: 100, ttl: 60 })
 
@@ -15,11 +16,14 @@ export function normalizeValue(value: string): string {
   return value.trim()
 }
 
-export async function getData(url: string): Promise<ResponsePayload<VaccinationInformation>> {
-  const cached = await cache.get(url) as ResponsePayload<VaccinationInformation>
+export async function getData(base64Url: string): Promise<ResponsePayload<VaccinationInformation>> {
+  const cached = await cache.get(base64Url) as ResponsePayload<VaccinationInformation>
   if (cached) return cached
 
-  const html = await get(Buffer.from(url, 'base64').toString())
+  const baseUrl = Buffer.from(base64Url, 'base64').toString()
+  const { url } = validateQrData(baseUrl)
+
+  const html = await get(url)
   const dom = new JSDOM(html)
 
   const panel = dom.window.document.querySelector('.panel-success')
