@@ -55,7 +55,7 @@ export async function exportToPdf(url: string, vaccine: VaccinationInformation) 
   page.drawText(vaccine.nextVaccinationDate, { x: 142 + (120 - w) / 2, y: 429, maxWidth: 120 })
 
   // QR Code
-  const qrcode = await QRCode.toDataURL(url, { margin: 0, scale: 1 })
+  const qrcode = await QRCode.toDataURL(url, { margin: 0, scale: 1, width: 500 })
   const image = await pdf.embedPng(qrcode)
   page.drawImage(image, {
     x: 126.6, y: 492.98,
