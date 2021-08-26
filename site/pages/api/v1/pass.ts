@@ -15,7 +15,8 @@ export default async function handler(
   const pass = template.createPass(buildApplePass(url, data))
   const buffer = await pass.asBuffer()
 
+  const fileName = `CertiCovid_${new Date().toISOString().replace(/\W/g, '_')}.pkpass`
   res.setHeader('Content-Type', 'application/vnd.apple.pkpass')
-  res.setHeader('Content-Disposition', 'attachment; filename=certcovid.pkpass');
+  res.setHeader('Content-Disposition', `attachment; filename=${fileName}`)
   res.status(200).send(buffer)
 }
