@@ -1,4 +1,4 @@
-import { isDate } from "lodash"
+import { isDate } from 'lodash'
 
 export const CovidDataRegExp = /\-COVID\-19\-/gi
 export const errorMessage = 'El QR que intenta escanear no corresponde al de la Vacuna'

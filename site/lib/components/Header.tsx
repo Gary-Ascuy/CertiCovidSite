@@ -16,10 +16,12 @@ export default function Header({ title = 'CertiCovid', className = 'text-5xl' }:
         <line x1='15' y1='12' x2='17' y2='12' />
         <line x1='7' y1='16' x2='17' y2='16' />
       </svg>
+
       &nbsp; &nbsp;
       <div className={`font-bold text-primary ${className}`}>{title}</div>
       &nbsp; &nbsp;
-      <Image src='/assets/bolivia/flag.png' height={45} width={76} alt='download pdf button'></Image>
+
+      <Image src='/assets/bolivia/flag.png' height={45} width={76} alt='Bolivia Flag'></Image>
     </div>
   )
 }
