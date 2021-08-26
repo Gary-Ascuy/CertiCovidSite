@@ -44,6 +44,8 @@ export function buildApplePass(urlBase64: string, response: ResponsePayload<Vacc
     serialNumber: uuid(),
     description: 'Carnet de Vacunación',
     logoText: 'Carnet de Vacunación',
+    passTypeIdentifier: 'pass.me.certicovid.credential',
+    organizationName: 'CertiCovid'
   }
 
   return { ...baseFields, barcodes: [barcode], generic }
