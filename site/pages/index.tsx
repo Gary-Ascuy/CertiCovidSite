@@ -76,7 +76,7 @@ const Home: NextPage = () => {
         setIsLoading(false)
       } catch (error) {
         setIsLoading(false)
-        setErrorMessage('No es posible obtener datos del servidor, intente mas tarde')
+        setErrorMessage('No es posible obtener datos del servidor en este momento, por favor intente nuevamente mas tarde')
       }
     }
 
@@ -138,9 +138,9 @@ const Home: NextPage = () => {
 
         {/* Step 1 - Cargar Certificado */}
         {isPrivacityPolice &&
-          <Step step='1' title='Cargar Certificado' >
+          <Step step='1' title='Cargar Certificado Actual' >
             <div className='space-y-5 font-light'>
-              <p>Escanea el código QR de tu certificado usando la cámara de tu dispositivo o selecciona y sube una imagen (PDF, Captura donde se vea claramente el QR).</p>
+              <p>Escanea el código QR de tu certificado actual usando la cámara de tu dispositivo o selecciona y sube una imagen (PDF, Captura donde se vea claramente el QR).</p>
               <div className='grid grid-cols-2 gap-5'>
                 <button onClick={() => setIsCamVisible(!isCamVisible)} type='button'
                   className='focus:outline-none h-8 bg-primary text-sm text-white hover:bg-primary-hover font-semibold rounded-md'>

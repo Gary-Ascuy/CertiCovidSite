@@ -24,7 +24,7 @@ export function validateOldQRCodeValue(data: string): ValidationResult {
   const [dose, place, lot] = vaccine.split('-')
   if (!_.isDate(new Date(`${y}-${m}-${d}`))) throw new Error(errorMessage)
 
-  const error: any = new Error(`QR Code corresponte a "${name}", intente generar nuevamente su certificado en la pagina oficial`)
+  const error: any = new Error(`El QR corresponde a ${name}, pero tiene un formato antiguo, por favor utilice un certificado actual.`)
   error.details = { name, ci, date: `${d}/${m}/${y}`, dose, place, lot }
   throw error
 }
