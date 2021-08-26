@@ -69,19 +69,3 @@ export async function getData(base64Url: string): Promise<ResponsePayload<Vaccin
 
   return personalData
 }
-
-// TODO: Remove unnecesary methods
-export function isPersonal(value: string[]) {
-  const keys = ['NOMBRE COMPLETO', 'DOCUMENTO DE IDENTIDAD', 'FECHA NACIMIENTO']
-  return keys.includes(value[0])
-}
-
-export function isPlace(value: string[]) {
-  const keys = ['DEPARTAMENTO', 'MUNICIPIO', 'ESTABLECIMIENTO']
-  return keys.includes(value[0])
-}
-
-export function isVaccine(value: string[]) {
-  const keys = ['FECHA VACUNACION', 'VACUNA', 'DOSIS', 'PROVEEDOR', 'LOTE', 'NRO CONSENTIMIENTO', 'FECHA PROXIMA VACUNACION']
-  return keys.includes(value[0])
-}
