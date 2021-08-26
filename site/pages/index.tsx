@@ -18,7 +18,7 @@ import { VaccinationInformation } from '../lib/models/VaccinationInformation'
 import Header from '../lib/components/Header'
 import { getUrlFromFile } from '../lib/services/file'
 import { exportToPdf } from '../lib/services/pdf'
-// import { validateQrData } from '../lib/services/validation'
+import { getValidationError } from '../lib/services/validation'
 
 import * as ga from '../lib/ga'
 
@@ -49,12 +49,11 @@ const Home: NextPage = () => {
       setData(null)
       setCode(null)
 
-      // Adding workaround
-      // const { url } = validateQrData(value)
-      if (!/^https\:\/\/sus\.minsalud\.gob\.bo/gi.test(value)) {
-        setUrl('') // TODO: Fixme
+      const error = getValidationError(value)
+      if (error) {
+        setUrl('')
         setCode('')
-        setError('El QR que intenta escanear no corresponde al de la Vacuna')
+        setError(error)
         return
       }
 
