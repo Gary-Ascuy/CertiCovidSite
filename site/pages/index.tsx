@@ -18,7 +18,8 @@ import { VaccinationInformation } from '../lib/models/VaccinationInformation'
 import Header from '../lib/components/Header'
 import { getUrlFromFile } from '../lib/services/file'
 import { exportToPdf } from '../lib/services/pdf'
-import { validateQrData } from '../lib/services/validation'
+// import { validateQrData } from '../lib/services/validation'
+
 import * as ga from '../lib/ga'
 
 const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false })
