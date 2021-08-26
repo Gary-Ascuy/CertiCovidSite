@@ -96,7 +96,7 @@ const Home: NextPage = () => {
   }, [url])
 
   useEffect(() => {
-    if (!input || !input.current) return;
+    if (!input || !input.current) return
 
     const processFile = async () => {
       try {

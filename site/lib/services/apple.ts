@@ -1,8 +1,8 @@
-import { ApplePass, BarcodeDescriptor } from "@walletpass/pass-js/dist/interfaces"
+import { ApplePass, BarcodeDescriptor } from '@walletpass/pass-js/dist/interfaces'
 import { v4 as uuid } from 'uuid'
 
-import { ResponsePayload } from "../models/ResponsePayload"
-import { VaccinationInformation } from "../models/VaccinationInformation"
+import { ResponsePayload } from '../models/ResponsePayload'
+import { VaccinationInformation } from '../models/VaccinationInformation'
 
 const format = 'PKBarcodeFormatQR'
 const messageEncoding = 'utf-8'

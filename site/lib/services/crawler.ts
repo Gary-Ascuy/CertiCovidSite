@@ -1,8 +1,8 @@
 import { JSDOM } from 'jsdom'
 import { upperCase } from 'lodash'
-import { get } from './fetch'
 import manager from 'cache-manager'
 
+import { get } from './fetch'
 import { VaccinationInformation } from '../models/VaccinationInformation'
 import { ResponsePayload } from '../models/ResponsePayload'
 import { getValidationError } from './validation'
