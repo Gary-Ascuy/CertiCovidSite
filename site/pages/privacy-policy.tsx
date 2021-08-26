@@ -24,30 +24,26 @@ const PrivacyPolicy: NextPage = () => {
               Información general
             </p>
 
-            <p className='p-2 text-justify'>
-              <ul className='px-4 list-disc list-inside'>
-                <li>Tus datos no se almacenan más allá de la sesión activa del navegador y el sitio no utiliza cookies.</li>
-                <li>No se envían datos a terceros.</li>
-                <li>Transmitimos sus datos de forma segura a través de https.</li>
-                <li>Nuestro servidor está alojado en Vercel.</li>
-                <li>El código fuente de este sitio está disponible en GitHub.</li>
-                <li>Por defecto, los pases de Apple Wallet son accesibles desde la pantalla de bloqueo. Esto se puede cambiar en los ajustes.</li>
-              </ul>
-            </p>
+            <ul className='px-4 list-disc list-inside'>
+              <li>Tus datos no se almacenan más allá de la sesión activa del navegador y el sitio no utiliza cookies.</li>
+              <li>No se envían datos a terceros.</li>
+              <li>Transmitimos sus datos de forma segura a través de https.</li>
+              <li>Nuestro servidor está alojado en Vercel.</li>
+              <li>El código fuente de este sitio está disponible en GitHub.</li>
+              <li>Por defecto, los pases de Apple Wallet son accesibles desde la pantalla de bloqueo. Esto se puede cambiar en los ajustes.</li>
+            </ul>
 
             <p className='px-2 text-xl text-justify font-black text-primary'>
               Explicación resumida del proceso
             </p>
             <p className='px-2 text-justify'>Los siguientes pasos ocurren al escanear su código QR.</p>
 
-            <p className='p-2 text-justify'>
-              <ul className='px-4 list-disc list-inside'>
-                <li>Reconocimiento y extracción de los datos del código QR de su certificado seleccionado</li>
-                <li>Recabar la información de los datos publicados en el QR desde la pagina del Ministerio de Salud</li>
-                <li>Generar un archivo PKPass compatible con AppleWallet (en iOS) y WalletPasses (en Android) y una vista previa en formato amigable (diseño vertical) para el celular si desean tomar una captura de pantalla o descargar el documento el formato PDF</li>
-                <li>Guardar el archivo en su dispositivo</li>
-              </ul>
-            </p>
+            <ul className='px-4 list-disc list-inside'>
+              <li>Reconocimiento y extracción de los datos del código QR de su certificado seleccionado</li>
+              <li>Recabar la información de los datos publicados en el QR desde la pagina del Ministerio de Salud</li>
+              <li>Generar un archivo PKPass compatible con AppleWallet (en iOS) y WalletPasses (en Android) y una vista previa en formato amigable (diseño vertical) para el celular si desean tomar una captura de pantalla o descargar el documento el formato PDF</li>
+              <li>Guardar el archivo en su dispositivo</li>
+            </ul>
 
             <p className='p-2 text-justify'>
               <span className='font-black text-primary'>CertiCovid</span> ofrece este certificado digital a usted, el usuario, con la condición de que acepte todos los términos, condiciones, políticas y avisos aquí expuestos. <span className='font-black text-primary'>CertiCovid</span> se reserva el derecho a realizar cambios en estos términos y condiciones de forma inmediata, publicando los cambios en este lugar.
