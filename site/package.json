@@ -1,7 +1,14 @@
 {
-  "name": "site",
-  "version": "0.1.0",
+  "name": "bo-certicovid-site",
+  "description": "CertiCovid convierte tu certificado de vacuna en una versión digital para que lo lleves en tu celular",
+  "version": "1.0.0-rc1",
   "private": true,
+  "license": "MIT",
+  "authors": [
+    "Gary Ascuy @garyascuy",
+    "Rodrigo Ergueta @rodrigoergueta",
+    "Ramiro Ergueta @ramiroergueta"
+  ],
   "scripts": {
     "dev": "next dev -p 3666",
     "build": "next build",

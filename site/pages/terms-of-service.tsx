@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import React from 'react'
+
 import Header from '../lib/components/Header'
 import Metadata from '../lib/components/Metadata'
 import Seo from '../lib/components/Seo'
