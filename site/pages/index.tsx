@@ -197,13 +197,13 @@ const Home: NextPage = () => {
           <Step step='3' title='Descargar Certificado' enabled={!!data}>
             <div className='space-y-5 font-light'>
               <p>Puedes añadirlo directamente a tu billetera móvil (ej. AppleWallet en iOS y WalletPasses en Android) o descargar un PDF en un formato amigable para celulares.</p>
-              <div className='grid grid-cols-3 gap-5'>
+              <div className='grid grid-cols-2 gap-5 md:grid-cols-3'>
                 <a href={code ? `/api/v1/pass?code=${code}` : '#'}>
                   <Image src='/assets/buttons/Add_to_Apple_Wallet_rgb_ES.svg' height={100} width={300} alt='apple wallet button'></Image>
                   <div className='text-sm text-center'>Compatible con Android Wallets</div>
                 </a>
 
-                <div></div>
+                <div className='hidden md:block'></div>
 
                 <div className='cursor-pointer' onClick={() => data && data.data && exportToPdf(url, data.data)}>
                   <Image src='/assets/buttons/Add_to_PDF.svg' height={100} width={300} alt='download pdf button'></Image>
