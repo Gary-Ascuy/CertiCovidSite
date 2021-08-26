@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      sans: ['Roboto', 'Helvetica Neue', 'sans-serif'],
+      sans: ['Helvetica Neue', 'sans-serif'],
     },
     textColor: theme => ({
       ...theme('colors'),

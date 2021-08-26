@@ -124,13 +124,13 @@ const Home: NextPage = () => {
 
             <input id='privacity' defaultChecked={true} onChange={() => setIsPrivacityPolice(!isPrivacityPolice)} type='checkbox'></input>
             <label htmlFor='privacity'>&nbsp;
-              Acepto las&nbsp;
+              Acepto los&nbsp;
               <a target='_blank' href='/terms-of-service' className='text-primary text-underline text-black'>
-                Condiciones del servicio
+                Términos y Condiciones
               </a>
               &nbsp;y la&nbsp;
               <a target='_blank' href='/privacy-policy' className='text-primary text-underline text-black'>
-                Politica de Privacidad
+                Política de Privacidad
               </a>.
             </label>
           </div>

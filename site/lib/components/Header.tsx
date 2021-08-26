@@ -2,9 +2,10 @@ import Image from 'next/image'
 
 export interface HeaderProps {
   title?: string
+  className?: string
 }
 
-export default function Header({ title = 'CertiCovid' }: HeaderProps) {
+export default function Header({ title = 'CertiCovid', className = 'text-5xl' }: HeaderProps) {
   return (
     <div className='flex flex-row items-center p-3 justify-center space-x-1'>
       <svg xmlns='http://www.w3.org/2000/svg' className='icon icon-tabler icon-tabler-id' width='50' height='50' viewBox='0 0 24 24' strokeWidth='1.5' stroke='#006C9D' fill='none' strokeLinecap='round' strokeLinejoin='round'>
@@ -16,7 +17,7 @@ export default function Header({ title = 'CertiCovid' }: HeaderProps) {
         <line x1='7' y1='16' x2='17' y2='16' />
       </svg>
       &nbsp; &nbsp;
-      <div className='text-5xl font-bold text-primary'>{title}</div>
+      <div className={`font-bold text-primary ${className}`}>{title}</div>
       &nbsp; &nbsp;
       <Image src='/assets/bolivia/flag.png' height={45} width={76} alt='download pdf button'></Image>
     </div>
