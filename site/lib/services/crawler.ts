@@ -21,7 +21,8 @@ export async function getData(base64Url: string): Promise<ResponsePayload<Vaccin
   if (cached) return cached
 
   const baseUrl = Buffer.from(base64Url, 'base64').toString()
-  const { url } = validateQrData(baseUrl)
+  // const { url } = validateQrData(baseUrl)
+  const url = baseUrl
 
   const html = await get(url)
   const dom = new JSDOM(html)
