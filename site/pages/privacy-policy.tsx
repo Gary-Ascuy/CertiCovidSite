@@ -21,11 +21,11 @@ const PrivacyPolicy: NextPage = () => {
             </p>
 
             <p className='p-2 text-xl text-justify font-black text-primary'>
-              <div className=''>Información general</div>
+              Información general
             </p>
 
-            <p className='text-justify px-8 py-2'>
-              <ul className='list-disc text-justify'>
+            <p className='p-2 text-justify'>
+              <ul className='px-4 list-disc list-inside'>
                 <li>Tus datos no se almacenan más allá de la sesión activa del navegador y el sitio no utiliza cookies.</li>
                 <li>No se envían datos a terceros.</li>
                 <li>Transmitimos sus datos de forma segura a través de https.</li>
@@ -35,13 +35,13 @@ const PrivacyPolicy: NextPage = () => {
               </ul>
             </p>
 
-            <p className='p-2 text-justify'>
-              <div className='text-xl font-black text-primary'>Explicación resumida del proceso</div>
-              <p className='py-2'>Los siguientes pasos ocurren al escanear su código QR.</p>
+            <p className='px-2 text-xl text-justify font-black text-primary'>
+              Explicación resumida del proceso
             </p>
+            <p className='px-2 text-justify'>Los siguientes pasos ocurren al escanear su código QR.</p>
 
-            <p className='px-8 py-0 text-justify'>
-              <ul className='list-disc text-justify'>
+            <p className='p-2 text-justify'>
+              <ul className='px-4 list-disc list-inside'>
                 <li>Reconocimiento y extracción de los datos del código QR de su certificado seleccionado</li>
                 <li>Recabar la información de los datos publicados en el QR desde la pagina del Ministerio de Salud</li>
                 <li>Generar un archivo PKPass compatible con AppleWallet (en iOS) y WalletPasses (en Android) y una vista previa en formato amigable (diseño vertical) para el celular si desean tomar una captura de pantalla o descargar el documento el formato PDF</li>
@@ -52,6 +52,7 @@ const PrivacyPolicy: NextPage = () => {
             <p className='p-2 text-justify'>
               <span className='font-black text-primary'>CertiCovid</span> ofrece este certificado digital a usted, el usuario, con la condición de que acepte todos los términos, condiciones, políticas y avisos aquí expuestos. <span className='font-black text-primary'>CertiCovid</span> se reserva el derecho a realizar cambios en estos términos y condiciones de forma inmediata, publicando los cambios en este lugar.
             </p>
+
             <p className='p-2 text-justify'>
               Utilice el certificado bajo su propia responsabilidad. Este certificado se le proporciona &ldquo;tal cual&rdquo; sin garantía de ningún tipo, ni expresa ni implícita. Ni <span className='font-black text-primary'>CertiCovid</span> ni sus empleados, agentes, proveedores de información de terceros, comerciantes, otorgantes de licencias o similares garantizan que el pase o su funcionamiento sea preciso, fiable, ininterrumpido o libre de errores. Ningún agente o representante tiene autoridad para crear ninguna garantía con respecto al certificado en nombre de CertiCovid. CertiCovid se reserva el derecho de cambiar o interrumpir en cualquier momento cualquier aspecto o característica del pase.
             </p>
