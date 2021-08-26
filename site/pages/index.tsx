@@ -19,6 +19,7 @@ import Header from '../lib/components/Header'
 import { getUrlFromFile } from '../lib/services/file'
 import { exportToPdf } from '../lib/services/pdf'
 import { validateQrData } from '../lib/services/validation'
+import * as ga from '../lib/ga'
 
 const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false })
 
@@ -59,6 +60,8 @@ const Home: NextPage = () => {
 
   const handleCamScan = (data: string | null) => {
     if (data) {
+      ga.event({ action: 'upload', params: { type: 'camera' } })
+
       validateAndUpdateUrl(data)
       setIsCamVisible(false)
     }
@@ -75,6 +78,8 @@ const Home: NextPage = () => {
         setData(await request.json())
         setIsLoading(false)
       } catch (error) {
+        ga.event({ action: 'error', params: { type: 'loading' } })
+
         setIsLoading(false)
         setErrorMessage('No es posible obtener datos del servidor en este momento, por favor intente nuevamente mas tarde')
       }

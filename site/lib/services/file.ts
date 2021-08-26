@@ -2,6 +2,8 @@ import { PNG } from 'pngjs'
 import jsQR, { Options, QRCode } from 'jsqr'
 import * as PdfJS from 'pdfjs-dist'
 
+import * as ga from '../ga'
+
 PdfJS.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PdfJS.version}/pdf.worker.js`
 
 const options: Options = { inversionAttempts: 'dontInvert' }
@@ -14,6 +16,7 @@ export const loaders: { [key: string]: (fileBuffer: ArrayBuffer) => Promise<Imag
 export async function getUrlFromFile(file: File): Promise<string> {
   const fileBuffer = await file.arrayBuffer()
 
+  ga.event({ action: 'upload', params: { type: file.type } })
   const loader = loaders[file.type]
   if (!loader) throw Error('does not exist loader')
   const { data, width, height } = await loader(fileBuffer)
