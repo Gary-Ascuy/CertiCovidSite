@@ -114,11 +114,11 @@ export default function Home() {
           <input id='privacity' defaultChecked={true} onChange={() => setIsPrivacityPolice(!isPrivacityPolice)} type='checkbox'></input>
           <label htmlFor='privacity'>&nbsp;
             Acepto los&nbsp;
-            <a target='_blank' href='/terms-of-service' className='text-primary text-underline text-black'>
+            <a target='_blank' href='/terms-of-service' className='text-primary hover:underline'>
               Términos y Condiciones
             </a>
             &nbsp;y la&nbsp;
-            <a target='_blank' href='/privacy-policy' className='text-primary text-underline text-black'>
+            <a target='_blank' href='/privacy-policy' className='text-primary hover:underline'>
               Política de Privacidad
             </a>.
           </label>
