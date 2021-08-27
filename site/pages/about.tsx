@@ -9,18 +9,18 @@ import Header from '../lib/components/Header'
 const About: NextPage = () => {
   return (
     <div className='md:w-2/3 xl:w-2/5 md:mx-auto flex flex-col min-h-screen justify-center px-5 py-12'>
-      <Head><Metadata title='CertiCovid - About'></Metadata></Head>
-      <Seo title='CertiCovid - About' description='CertiCovid - About' />
+      <Head><Metadata title='CertiCovid - Quienes Somos?'></Metadata></Head>
+      <Seo title='CertiCovid - Quienes Somos?' description='CertiCovid - Quienes Somos?' />
 
       <main className='flex flex-col space-y-2'>
-        <Header title='About' className='text-3xl'></Header>
+        <Header title='Quienes Somos?' className='text-3xl'></Header>
 
         <div className='flex flex-col space-y-5'>
           <div className='rounded-md p-6 bg-gray-100 space-y-4 '>
             <div className='text-primary font-black'>
               CertiCovid - Certificado Digital de Vacuna
             </div>
-            <div className='font-light text-justify'>
+            <div className='font-light border-1 text-justify'>
               CertiCovid convierte tu certificado de vacuna en una versión digital para que lo lleves en tu celular.
             </div>
 
@@ -35,12 +35,9 @@ const About: NextPage = () => {
               </ul>
             </div>
 
-            <div className='p-3 text-center font-black'>
+            <div className='p-2 text-center font-light'>
               Copyright @ 2021
             </div>
-          </div>
-          <div className='rounded-md p-6 bg-gray-100 space-y-4'>
-            <img className='rounded-md' src='/assets/cover.png' alt='CertiCovid Cover' />
           </div>
         </div>
       </main>
