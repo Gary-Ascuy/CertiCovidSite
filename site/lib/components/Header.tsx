@@ -10,7 +10,7 @@ export default function Header({ title = 'CertiCovid', className = 'text-5xl' }:
   return (
     <>
       <div className='flex flex-row items-center justify-center space-x-1'>
-        <svg xmlns='http://www.w3.org/2000/svg' className='icon icon-tabler icon-tabler-id' width='50' height='50' viewBox='0 0 24 24' strokeWidth='1.5' stroke='#000' fill='none' strokeLinecap='round' strokeLinejoin='round'>
+        <svg xmlns='http://www.w3.org/2000/svg' className='icon icon-tabler icon-tabler-id' width='50' height='50' viewBox='0 0 24 24' strokeWidth='1.5' stroke='#006C9D' fill='none' strokeLinecap='round' strokeLinejoin='round'>
           <path stroke='none' d='M0 0h24v24H0z' fill='none' />
           <rect x='3' y='4' width='18' height='16' rx='3' />
           <circle cx='9' cy='10' r='2' />
@@ -20,7 +20,7 @@ export default function Header({ title = 'CertiCovid', className = 'text-5xl' }:
         </svg>
 
         &nbsp; &nbsp;
-        <div className={`font-bold ${className}`}>{title}</div>
+        <div className={`font-bold text-primary ${className}`}>{title}</div>
         &nbsp; &nbsp;
 
         <Image src='/assets/bolivia/flag.png' height={45} width={76} alt='Bolivia Flag'></Image>
@@ -28,12 +28,12 @@ export default function Header({ title = 'CertiCovid', className = 'text-5xl' }:
 
       <nav className='nav flex flex-row space-x-4 justify-center text-md font-light text-gray-1 flex-wrap'>
         <Link href='/'>
-          <a href='https://github.com/Gary-Ascuy/Covid-Cert' className='hover:underline hover:text-white'>Home</a>
+          <a href='https://github.com/Gary-Ascuy/Covid-Cert' className='hover:underline hover:text-primary'>Home</a>
         </Link>
-        <a target='_blank' href='https://github.com/Gary-Ascuy/Covid-Cert' className='hover:underline hover:text-white' rel="noreferrer">Sponsor</a>
-        <a target='_blank' href='https://github.com/Gary-Ascuy/Covid-Cert' className='hover:underline hover:text-white' rel="noreferrer">GitHub</a>
+        <a target='_blank' href='https://github.com/Gary-Ascuy/Covid-Cert' className='hover:underline hover:text-primary' rel="noreferrer">Sponsor</a>
+        <a target='_blank' href='https://github.com/Gary-Ascuy/Covid-Cert' className='hover:underline hover:text-primary' rel="noreferrer">GitHub</a>
         <Link href='/about'>
-          <a className='hover:underline hover:text-white'>Quienes Somos?</a>
+          <a className='hover:underline hover:text-primary'>Quienes Somos?</a>
         </Link>
       </nav>
     </>

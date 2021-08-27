@@ -1,7 +1,11 @@
+import Link from 'next/link'
+
 export default function Footer() {
   return (
-    <div className='p-1 text-center font-light'>
-      Copyright @ 2021
-    </div>
+    <Link href='/about'>
+      <a className='pb-40 pt-2 text-center font-light hover:underline hover:text-primary'>
+        Copyright @ 2021
+      </a>
+    </Link>
   )
 }

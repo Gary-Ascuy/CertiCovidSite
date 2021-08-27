@@ -8,7 +8,7 @@ import Seo from '../lib/components/Seo'
 
 const TermsOfService: NextPage = () => {
   return (
-    <div className='md:w-2/3 xl:w-2/5 md:mx-auto flex flex-col min-h-screen justify-center px-5 py-12'>
+    <div className='md:w-2/3 xl:w-2/5 md:mx-auto flex flex-col min-h-screen px-5 py-12'>
       <Head><Metadata title='CertiCovid - Términos y Condiciones'></Metadata></Head>
       <Seo title='CertiCovid - Términos y Condiciones' description='CertiCovid - Términos y Condiciones' />
 

@@ -9,7 +9,7 @@ import Footer from '../lib/components/Footer'
 
 const About: NextPage = () => {
   return (
-    <div className='md:w-2/3 xl:w-2/5 md:mx-auto flex flex-col min-h-screen justify-center px-5 py-12'>
+    <div className='md:w-2/3 xl:w-2/5 md:mx-auto flex flex-col min-h-screen px-5 pt-12'>
       <Head><Metadata title='CertiCovid - Quienes Somos?'></Metadata></Head>
       <Seo title='CertiCovid - Quienes Somos?' description='CertiCovid - Quienes Somos?' />
 
