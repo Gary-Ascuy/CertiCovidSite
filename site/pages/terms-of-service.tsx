@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Footer from '../lib/components/Footer'
 
 import Header from '../lib/components/Header'
 import Metadata from '../lib/components/Metadata'
@@ -24,6 +25,8 @@ const TermsOfService: NextPage = () => {
             </p>
           </div>
         </div>
+
+        <Footer></Footer>
       </main>
     </div>
   )

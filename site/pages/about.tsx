@@ -5,6 +5,7 @@ import Head from 'next/head'
 import Metadata from '../lib/components/Metadata'
 import Seo from '../lib/components/Seo'
 import Header from '../lib/components/Header'
+import Footer from '../lib/components/Footer'
 
 const About: NextPage = () => {
   return (
@@ -44,9 +45,7 @@ const About: NextPage = () => {
             </div>
           </div>
 
-          <div className='p-1 text-center font-light'>
-            Copyright @ 2021
-          </div>
+          <Footer></Footer>
         </div>
       </main>
     </div>

@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Footer from '../lib/components/Footer'
 
 import Header from '../lib/components/Header'
 import Metadata from '../lib/components/Metadata'
@@ -53,6 +54,8 @@ const PrivacyPolicy: NextPage = () => {
               Utilice el certificado bajo su propia responsabilidad. Este certificado se le proporciona &ldquo;tal cual&rdquo; sin garantía de ningún tipo, ni expresa ni implícita. Ni <span className='font-black text-primary'>CertiCovid</span> ni sus empleados, agentes, proveedores de información de terceros, comerciantes, otorgantes de licencias o similares garantizan que el pase o su funcionamiento sea preciso, fiable, ininterrumpido o libre de errores. Ningún agente o representante tiene autoridad para crear ninguna garantía con respecto al certificado en nombre de CertiCovid. CertiCovid se reserva el derecho de cambiar o interrumpir en cualquier momento cualquier aspecto o característica del pase.
             </p>
           </div>
+
+          <Footer></Footer>
         </div>
       </main>
     </div>
