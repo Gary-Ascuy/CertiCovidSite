@@ -19,28 +19,33 @@ const About: NextPage = () => {
         <div className='flex flex-col space-y-5'>
           <div className='rounded-md p-6 bg-gray-100 space-y-4 '>
             <div className='text-primary font-black'>
-              CertiCovid - Certificado Digital de Vacuna
+              CertiCovid - Certificado Digital de Vacuna CertiCovid
             </div>
             <div className='font-light border-1 text-justify'>
-              CertiCovid convierte tu certificado de vacuna en una versión digital para que lo lleves en tu celular.
+              Digitaliza tu certificado de vacunación de manera gratuita y llévalo en tu celular.
             </div>
 
             <div className='text-primary font-black'>
-              Motivacion, Porque?
+              Motivación
             </div>
             <div className='font-light border-1 text-justify'>
-              bla bla bla bla.
+              Después de haber probado las alternativas existentes: imprimir y llevar nuestro certificado tamaño carta en el bolsillo, portar la version impresa en PVC (plástico) o incluso comprar una camiseta con el certificado estampado, nos topábamos con que el papel se deteriora, los QRs impresos en plástico no podían ser leídos o las camisetas se  ensucian, siempre volvíamos a descargar el certificado y guardarlo en el celular (en formatos no amigables).
             </div>
-
+            <div className='font-light border-1 text-justify'>
+              Nuestros celulares son algo que siempre llevamos con nosotros, por eso pensamos, por qué no usamos las funcionalidades que vienen en los teléfonos: como las billeteras (wallets, que son comúnmente utilizadas para llevar tickets de avión, entradas de conciertos o cupones) o al menos cambiar el formato del certificado a una version horizontal como la pantalla del celular.
+            </div>
+            <div className='font-light border-1 text-justify'>
+              Es ahi cuando nos reunimos los tres y comenzamos a trabajar en esta solución que haga ambas cosas. Guardar el certificado en tu billetera móvil y crear un formato horizontal del certificado, amigable, ecológico y fucnional.
+            </div>
 
             <div className='text-primary font-black'>
               Equipo de Desarrollo
             </div>
             <div className='font-light text-justify'>
               <ul className='px-4 list-disc list-inside'>
-                <li>Gary Ascuy (@garyascuy)</li>
-                <li>Rodrigo Ergueta (@rodrigoergueta)</li>
-                <li>Ramiro Ergueta (@ramiroergueta)</li>
+                <li>Gary Ascuy ( @garyascuy )</li>
+                <li>Rodrigo Ergueta ( @rodrigoergueta )</li>
+                <li>Ramiro Ergueta ( @ramiroergueta )</li>
               </ul>
             </div>
           </div>
