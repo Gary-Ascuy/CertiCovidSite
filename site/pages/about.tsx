@@ -10,11 +10,11 @@ import Footer from '../lib/components/Footer'
 const About: NextPage = () => {
   return (
     <div className='md:w-2/3 xl:w-2/5 md:mx-auto flex flex-col min-h-screen px-5 pt-12'>
-      <Head><Metadata title='CertiCovid - Quienes Somos?'></Metadata></Head>
-      <Seo title='CertiCovid - Quienes Somos?' description='CertiCovid - Quienes Somos?' />
+      <Head><Metadata title='CertiCovid - ¿Quienes somos?'></Metadata></Head>
+      <Seo title='CertiCovid - ¿Quienes somos?' description='CertiCovid - ¿Quienes somos?' />
 
       <main className='flex flex-col space-y-2'>
-        <Header title='Quienes Somos?' className='text-3xl'></Header>
+        <Header title='¿Quienes somos?' className='text-3xl'></Header>
 
         <div className='flex flex-col space-y-5'>
           <div className='rounded-md p-6 bg-gray-100 space-y-4 '>
@@ -35,7 +35,7 @@ const About: NextPage = () => {
               Nuestros celulares son algo que siempre llevamos con nosotros, por eso pensamos, por qué no usamos las funcionalidades que vienen en los teléfonos: como las billeteras (wallets, que son comúnmente utilizadas para llevar tickets de avión, entradas de conciertos o cupones) o al menos cambiar el formato del certificado a una version horizontal como la pantalla del celular.
             </div>
             <div className='font-light border-1 text-justify'>
-              Es ahi cuando nos reunimos los tres y comenzamos a trabajar en esta solución que haga ambas cosas. Guardar el certificado en tu billetera móvil y crear un formato horizontal del certificado, amigable, ecológico y fucnional.
+              Es ahi cuando nos reunimos los tres y comenzamos a trabajar en esta solución que haga ambas cosas. Guardar el certificado en tu billetera móvil y crear un formato horizontal del certificado, amigable, ecológico y funcional.
             </div>
 
             <div className='text-primary font-black'>
