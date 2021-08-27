@@ -145,7 +145,7 @@ export default function Home() {
 
             {isCamVisible &&
               <div>
-                <QrReader delay={300} onError={handleCamError} onScan={handleCamScan} />
+                <QrReader delay={300} resolution={1000} onError={handleCamError} onScan={handleCamScan} />
               </div>
             }
           </div>
