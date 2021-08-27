@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-html-link-for-pages */
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { isObject } from 'lodash'
@@ -24,8 +24,6 @@ export default function Home() {
   const [code, setCode] = useState<string | null>('')
   const [isCamVisible, setIsCamVisible] = useState(false)
   const [isPrivacityPolice, setIsPrivacityPolice] = useState(true)
-
-  const input = useRef<HTMLInputElement>(null)
 
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState<ResponsePayload<VaccinationInformation> | null>(null)
@@ -90,28 +88,19 @@ export default function Home() {
     loadData()
   }, [url])
 
-  useEffect(() => {
-    if (!input || !input.current) return
+  const processFileContent = async (selectorFiles: FileList | null) => {
+    if (!selectorFiles) return
 
-    const processFile = async () => {
-      try {
-        const file = input?.current
-        const selectedFile = (file?.files || [])[0]
-        if (!!selectedFile) {
-          const url = await getUrlFromFile(selectedFile)
+    const file = selectorFiles.item(0)
+    if (!file) return
 
-          validateAndUpdateUrl(url)
-          setIsCamVisible(false)
-        }
-      } catch (error) {
-        setErrorMessage(error)
-      }
+    try {
+      const url = await getUrlFromFile(file)
+      validateAndUpdateUrl(url)
+    } catch (error) {
+      setErrorMessage(error)
     }
-
-    input.current.addEventListener('input', processFile)
-    return () => input?.current?.removeEventListener('input', processFile)
-  }, [input, validateAndUpdateUrl])
-
+  }
 
   return (
     <>
@@ -148,12 +137,12 @@ export default function Home() {
               </button>
 
               <canvas id='canvas' className='hidden' />
-              <input type='file' id='file' className='hidden' accept='application/pdf,image/png' ref={input} />
-              <label htmlFor='file'
-                className='focus:outline-none h-8 bg-primary text-sm text-white hover:bg-primary-hover text-center leading-8 font-semibold rounded-md'>
+              <input type='file' id='file' onChange={(event) => processFileContent(event.target.files)} className='hidden' accept='application/pdf,image/png' />
+              <label htmlFor='file' className='focus:outline-none h-8 bg-primary text-sm text-white hover:bg-primary-hover text-center leading-8 font-semibold rounded-md'>
                 Cargar Archivo
               </label>
             </div>
+
             {isCamVisible &&
               <div>
                 <QrReader delay={300} onError={handleCamError} onScan={handleCamScan} />

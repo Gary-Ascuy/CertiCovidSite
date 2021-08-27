@@ -4,10 +4,10 @@ import Head from 'next/head'
 import Metadata from '../lib/components/Metadata'
 import Seo from '../lib/components/Seo'
 import Header from '../lib/components/Header'
+import Home from '../lib/components/Home'
 import Footer from '../lib/components/Footer'
 
-const Home: NextPage = () => {
-
+const Index: NextPage = () => {
   return (
     <div className='md:w-2/3 xl:w-2/5 md:mx-auto flex flex-col min-h-screen justify-center px-5 py-12'>
       <Head>
@@ -24,4 +24,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Index
