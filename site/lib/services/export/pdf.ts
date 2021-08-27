@@ -2,8 +2,8 @@ import { PDFDocument, rgb, StandardFonts } from 'pdf-lib'
 import { saveAs } from 'file-saver'
 import QRCode from 'qrcode'
 
-import { VaccinationInformation } from '../models/VaccinationInformation'
-import * as ga from '../ga'
+import { VaccinationInformation } from '../../models/VaccinationInformation'
+import * as ga from '../../ga'
 
 export async function loadPdfTemplate(url: string = '/templates/pdf/template.pdf') {
   const bytes = await fetch(url).then(res => res.arrayBuffer())

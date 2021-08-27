@@ -16,9 +16,9 @@ import Seo from '../lib/components/Seo'
 import { ResponsePayload } from '../lib/models/ResponsePayload'
 import { VaccinationInformation } from '../lib/models/VaccinationInformation'
 import Header from '../lib/components/Header'
-import { getUrlFromFile } from '../lib/services/file'
-import { exportToPdf } from '../lib/services/pdf'
-import { getValidationError } from '../lib/services/validation'
+import { getUrlFromFile } from '../lib/services/import/file'
+import { exportToPdf } from '../lib/services/export/pdf'
+import { getValidationError } from '../lib/services/utils/validation'
 
 import * as ga from '../lib/ga'
 

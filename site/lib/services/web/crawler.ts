@@ -2,10 +2,10 @@ import { JSDOM } from 'jsdom'
 import { upperCase } from 'lodash'
 import manager from 'cache-manager'
 
-import { get } from './fetch'
-import { VaccinationInformation } from '../models/VaccinationInformation'
-import { ResponsePayload } from '../models/ResponsePayload'
-import { getValidationError } from './validation'
+import { getBuffer } from '../utils/fetch'
+import { VaccinationInformation } from '../../models/VaccinationInformation'
+import { ResponsePayload } from '../../models/ResponsePayload'
+import { getValidationError } from '../utils/validation'
 
 const cache = manager.caching({ store: 'memory', max: 100, ttl: 60 })
 
@@ -24,7 +24,7 @@ export async function getData(base64Url: string): Promise<ResponsePayload<Vaccin
   const url = Buffer.from(base64Url, 'base64').toString()
   if (getValidationError(url)) throw Error('Invalid Parameter')
 
-  const html = await get(url)
+  const html = await getBuffer(url)
   const dom = new JSDOM(html)
 
   const panel = dom.window.document.querySelector('.panel-success')

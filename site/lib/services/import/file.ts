@@ -2,7 +2,7 @@ import { PNG } from 'pngjs'
 import jsQR, { Options, QRCode } from 'jsqr'
 import * as PdfJS from 'pdfjs-dist'
 
-import * as ga from '../ga'
+import * as ga from '../../ga'
 
 PdfJS.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PdfJS.version}/pdf.worker.js`
 

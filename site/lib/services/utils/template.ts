@@ -1,7 +1,7 @@
 import { Template } from '@walletpass/pass-js'
 
 import { decrypt } from './crypto'
-import { get } from './fetch'
+import { getBuffer } from './fetch'
 
 const templateUrl = process.env.COVID__PASS_TEMPLATE_URL || ''
 const keyUrl = process.env.COVID__KEY_URL || ''
@@ -12,11 +12,11 @@ export const cache: { [key: string]: Template } = {}
 
 export async function loadTemplate(url: string = templateUrl): Promise<Template> {
   console.log('Getting keys from server')
-  const key = await get(keyUrl)
+  const key = await getBuffer(keyUrl)
   const signerPemData = decrypt(key.toString())
 
   console.log('Getting template from server')
-  const buffer = await get(url)
+  const buffer = await getBuffer(url)
   const template = await Template.fromBuffer(buffer)
 
   console.log('Updating certs on template')
