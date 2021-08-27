@@ -25,6 +25,14 @@ const About: NextPage = () => {
             </div>
 
             <div className='text-primary font-black'>
+              Motivacion, Porque?
+            </div>
+            <div className='font-light border-1 text-justify'>
+              bla bla bla bla.
+            </div>
+
+
+            <div className='text-primary font-black'>
               Equipo de Desarrollo
             </div>
             <div className='font-light text-justify'>
@@ -34,10 +42,10 @@ const About: NextPage = () => {
                 <li>Ramiro Ergueta (@ramiroergueta)</li>
               </ul>
             </div>
+          </div>
 
-            <div className='p-2 text-center font-light'>
-              Copyright @ 2021
-            </div>
+          <div className='p-1 text-center font-light'>
+            Copyright @ 2021
           </div>
         </div>
       </main>

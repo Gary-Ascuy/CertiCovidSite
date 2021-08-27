@@ -12,10 +12,11 @@ import Metadata from '../lib/components/Metadata'
 import Step from '../lib/components/Step'
 import Preview from '../lib/components/Preview'
 import Seo from '../lib/components/Seo'
+import Header from '../lib/components/Header'
+import Footer from '../lib/components/Footer'
 
 import { ResponsePayload } from '../lib/models/ResponsePayload'
 import { VaccinationInformation } from '../lib/models/VaccinationInformation'
-import Header from '../lib/components/Header'
 import { getUrlFromFile } from '../lib/services/import/file'
 import { exportToPdf } from '../lib/services/export/pdf'
 import { getValidationError } from '../lib/services/utils/validation'
@@ -224,6 +225,8 @@ const Home: NextPage = () => {
             </div>
           </Step>
         }
+
+        <Footer></Footer>
       </main>
     </div>
   )
