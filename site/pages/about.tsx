@@ -10,11 +10,11 @@ import Footer from '../lib/components/Footer'
 const About: NextPage = () => {
   return (
     <div className='md:w-2/3 xl:w-2/5 md:mx-auto flex flex-col min-h-screen px-5 pt-12'>
-      <Head><Metadata title='CertiCovid - ¿Quienes somos?'></Metadata></Head>
-      <Seo title='CertiCovid - ¿Quienes somos?' description='CertiCovid - ¿Quienes somos?' />
+      <Head><Metadata title='CertiCovid - ¿Quiénes somos?'></Metadata></Head>
+      <Seo title='CertiCovid - ¿Quiénes somos?' description='CertiCovid - ¿Quiénes somos?' />
 
       <main className='flex flex-col space-y-2'>
-        <Header title='¿Quienes somos?' className='text-3xl'></Header>
+        <Header title='¿Quiénes somos?' className='text-3xl'></Header>
 
         <div className='flex flex-col space-y-5'>
           <div className='rounded-md p-6 bg-gray-100 space-y-4 '>
