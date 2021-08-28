@@ -28,9 +28,9 @@ export default function Header({ title = 'CertiCovid', className = 'text-5xl' }:
 
       <nav className='nav flex flex-row space-x-4 justify-center text-md font-light text-gray-1 flex-wrap'>
         <Link href='/'>
-          <a className='hover:underline hover:text-primary'>Home</a>
+          <a className='hover:underline hover:text-primary'>Inicio</a>
         </Link>
-        <a target='_blank' href='https://ko-fi.com/certicovid' className='hover:underline hover:text-primary' rel="noreferrer">Sponsor</a>
+        <a target='_blank' href='https://ko-fi.com/certicovid' className='hover:underline hover:text-primary' rel="noreferrer">Donaciones</a>
         <a target='_blank' href='https://github.com/Gary-Ascuy/CertiCovid' className='hover:underline hover:text-primary' rel="noreferrer">GitHub</a>
         <Link href='/about'>
           <a className='hover:underline hover:text-primary'>¿Quiénes somos?</a>
