@@ -22,7 +22,7 @@ export async function getUrlFromFile(file: File): Promise<string> {
   const { data, width, height } = await loader(fileBuffer)
 
   const code: QRCode | null = jsQR(data, width, height, options)
-  if (!code) throw new Error('Datos Invalidos')
+  if (!code) throw new Error('El archivo no corresponde a un QR valido')
   return code.data
 }
 

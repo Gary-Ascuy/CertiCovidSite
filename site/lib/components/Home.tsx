@@ -79,6 +79,7 @@ export default function Home() {
 
   const downloadPdf = async (vaccine: VaccinationInformation) => {
     try {
+      setDownloadError(null)
       setIsDownloading(true)
       await exportToPdf(url, vaccine)
     } catch (error) {
@@ -90,6 +91,7 @@ export default function Home() {
 
   const downloadPass = async (url: string, vaccine: VaccinationInformation) => {
     try {
+      setDownloadError(null)
       setIsDownloading(true)
       await exportToPass(url, vaccine)
     } catch (error) {
@@ -129,7 +131,7 @@ export default function Home() {
       const url = await getUrlFromFile(file)
       validateAndUpdateUrl(url)
     } catch (error) {
-      setErrorMessage('Error inesperado')
+      setErrorMessage(error)
     }
   }
 
