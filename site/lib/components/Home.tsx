@@ -8,12 +8,15 @@ import { isObject } from 'lodash'
 
 import Step from './Step'
 import Preview from './Preview'
+import Loading from './Loading'
 
 import { ResponsePayload } from '../models/ResponsePayload'
 import { VaccinationInformation } from '../models/VaccinationInformation'
+
+import { getValidationError } from '../services/utils/validation'
 import { getUrlFromFile } from '../services/import/file'
 import { exportToPdf } from '../services/export/pdf'
-import { getValidationError } from '../services/utils/validation'
+import { exportToPass } from '../services/export/pass'
 
 import * as ga from '../ga'
 
@@ -24,6 +27,10 @@ export default function Home() {
   const [code, setCode] = useState<string | null>('')
   const [isCamVisible, setIsCamVisible] = useState(false)
   const [isPrivacityPolice, setIsPrivacityPolice] = useState(true)
+
+  const [isDownloading, setIsDownloading] = useState(false)
+  const [downloadError, setDownloadError] = useState<unknown | null>(null)
+
 
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState<ResponsePayload<VaccinationInformation> | null>(null)
@@ -68,6 +75,28 @@ export default function Home() {
   }
   const handleCamError = (error: Error) => {
     setErrorMessage('No se pudo iniciar la cámara. Intente en otro dispositivo')
+  }
+
+  const downloadPdf = async (vaccine: VaccinationInformation) => {
+    try {
+      setIsDownloading(true)
+      await exportToPdf(url, vaccine)
+    } catch (error) {
+      setDownloadError('Error inesperado intentanto descargar PDF')
+    } finally {
+      setIsDownloading(false)
+    }
+  }
+
+  const downloadPass = async (url: string, vaccine: VaccinationInformation) => {
+    try {
+      setIsDownloading(true)
+      await exportToPass(url, vaccine)
+    } catch (error) {
+      setDownloadError('Error inesperado intentando descargar Apple Wallet')
+    } finally {
+      setIsDownloading(false)
+    }
   }
 
   useEffect(() => {
@@ -160,25 +189,9 @@ export default function Home() {
           <div className='space-y-5 font-light'>
             <p>Recabando información de tu certificado del sitio oficial del ministerio de salud. Esto tomará unos segundos.</p>
 
-            {isLoading &&
-              <div className='flex flex-row items-center justify-center space-x-1'>
-                <span>
-                  <svg className='animate-spin h-10 w-10 text-primary' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'>
-                    <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4'></circle>
-                    <path className='opacity-75' fill='currentColor' d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'></path>
-                  </svg>
-                </span>
-                &nbsp;&nbsp;Validando...
-              </div>
-            }
-
-            {error &&
-              <div className='bg-red-200 rounded-md text-center text-red-900 py-5'>{error}.</div>
-            }
-
-            {data && data.success &&
-              <Preview person={data.data}></Preview>
-            }
+            {isLoading && <Loading message='Validando...'></Loading>}
+            {error && <div className='bg-red-200 rounded-md text-center text-red-900 py-5'>{error}.</div>}
+            {data && data.success && <Preview person={data.data}></Preview>}
           </div>
         </Step>
       }
@@ -191,23 +204,33 @@ export default function Home() {
               <a className='hover:underline text-primary font-light' target='_blank' href='https://play.google.com/store/apps/details?id=io.walletpasses.android' rel="noreferrer">
                 WalletPasses en Android
               </a>
-              .) o descargar un PDF en un formato amigable para celulares.</p>
-            <div className='grid grid-cols-2 gap-5 md:grid-cols-3' >
-              <a href={code ? `/api/v1/pass?code=${code}` : '#'} onClick={() => ga.event({ action: 'download', params: { type: 'pkpass' } })}>
-                <Image src='/assets/buttons/Add_to_Apple_Wallet_rgb_ES.svg' height={100} width={300} alt='apple wallet button'></Image>
-                <div className='text-sm text-center'>
-                  <a className='hover:underline text-primary font-light' target='_blank' href='https://play.google.com/store/apps/details?id=io.walletpasses.android' rel="noreferrer">
-                    Compatible con Android Wallets
-                  </a>
+              .) o descargar un PDF en un formato amigable para celulares.
+            </p>
+
+            {downloadError && <div className='bg-red-200 rounded-md text-center text-red-900 py-5'>{downloadError}.</div>}
+            {isDownloading && <Loading message='Descargando ...'></Loading>}
+
+            {!isDownloading &&
+              <div className='grid grid-cols-2 gap-5 md:grid-cols-3'>
+                <div>
+                  <div className='cursor-pointer' onClick={() => data && data.data && downloadPass(`/api/v1/pass?code=${code}`, data.data)}>
+                    <img className='w-full hover:shadow-lg rounded-2xl' src='/assets/buttons/Add_to_Apple_Wallet_rgb_ES.svg' alt='apple wallet button'></img>
+                  </div>
+
+                  <div className='text-sm p-2 text-center'>
+                    <a className='hover:underline text-primary font-light' target='_blank' href='https://play.google.com/store/apps/details?id=io.walletpasses.android' rel="noreferrer">
+                      Compatible con Android Wallets
+                    </a>
+                  </div>
                 </div>
-              </a>
 
-              <div className='hidden md:block'></div>
+                <div className='hidden md:block'></div>
 
-              <div className='cursor-pointer' onClick={() => data && data.data && exportToPdf(url, data.data)}>
-                <Image src='/assets/buttons/Add_to_PDF.svg' height={100} width={300} alt='download pdf button'></Image>
+                <div className='cursor-pointer' onClick={() => data && data.data && downloadPdf(data.data)}>
+                  <img className='w-full hover:shadow-lg rounded-2xl' src='/assets/buttons/Add_to_PDF.svg' alt='download pdf button'></img>
+                </div>
               </div>
-            </div>
+            }
           </div>
         </Step>
       }
