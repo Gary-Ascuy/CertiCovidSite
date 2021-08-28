@@ -48,6 +48,17 @@ const About: NextPage = () => {
                 <li>Ramiro Ergueta ( @ramiroergueta )</li>
               </ul>
             </div>
+
+            <div className='text-primary font-black'>
+              Contáctanos
+            </div>
+            <div className='font-light text-justify'>
+              <ul className='px-4 list-disc list-inside'>
+                <li>
+                  <a href='mailto:certicovid@gmail.com' className='text-primary hover:underline'>CertiCovid &lt;certicovid@gmail.com&gt;</a>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <Footer></Footer>
