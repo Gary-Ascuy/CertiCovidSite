@@ -18,11 +18,11 @@ export async function getUrlFromFile(file: File): Promise<string> {
 
   ga.event({ action: 'upload', params: { type: file.type } })
   const loader = loaders[file.type]
-  if (!loader) throw Error('does not exist loader')
+  if (!loader) throw Error('Sólo se soporta formato PDF y PNG')
   const { data, width, height } = await loader(fileBuffer)
 
   const code: QRCode | null = jsQR(data, width, height, options)
-  if (!code) throw new Error('Invalida data')
+  if (!code) throw new Error('Datos Invalidos')
   return code.data
 }
 

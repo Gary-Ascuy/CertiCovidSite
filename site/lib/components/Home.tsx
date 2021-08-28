@@ -54,7 +54,7 @@ export default function Home() {
       setCode(encodeURI(window.btoa(url)))
       setUrl(url)
     } catch (error) {
-      setErrorMessage(error)
+      setErrorMessage('Error inesperado')
     }
   }, [])
 
@@ -66,7 +66,9 @@ export default function Home() {
       setIsCamVisible(false)
     }
   }
-  const handleCamError = (error: Error) => setErrorMessage(error)
+  const handleCamError = (error: Error) => {
+    setErrorMessage('No se pudo iniciar la cámara. Intente en otro dispositivo')
+  }
 
   useEffect(() => {
     if (!url) return
@@ -98,7 +100,7 @@ export default function Home() {
       const url = await getUrlFromFile(file)
       validateAndUpdateUrl(url)
     } catch (error) {
-      setErrorMessage(error)
+      setErrorMessage('Error inesperado')
     }
   }
 
@@ -129,7 +131,7 @@ export default function Home() {
       {isPrivacityPolice &&
         <Step step='1' title='Cargar Certificado Actual' >
           <div className='space-y-5 font-light'>
-            <p>Escanea el código QR de tu certificado actual usando la cámara de tu dispositivo o selecciona y sube una imagen (PDF, Captura donde se vea claramente el QR).</p>
+            <p>Escanea el código QR de tu certificado actual usando la cámara de tu dispositivo o selecciona y sube una imagen (PDF o imagen en formato PNG donde se vea claramente el QR).</p>
             <div className='grid grid-cols-2 gap-5'>
               <button onClick={() => setIsCamVisible(!isCamVisible)} type='button'
                 className='focus:outline-none h-8 bg-primary text-sm text-white hover:bg-primary-hover font-semibold rounded-md'>
@@ -183,7 +185,7 @@ export default function Home() {
 
       {/* Step 3 - Descargar Certificado */}
       {isPrivacityPolice &&
-        <Step step='3' title='Descargar Certificado' enabled={!data}>
+        <Step step='3' title='Descargar Certificado' enabled={!!data}>
           <div className='space-y-5 font-light'>
             <p>Puedes añadirlo directamente a tu billetera móvil (ej. AppleWallet en iOS y&nbsp;
               <a className='hover:underline text-primary font-light' target='_blank' href='https://play.google.com/store/apps/details?id=io.walletpasses.android' rel="noreferrer">

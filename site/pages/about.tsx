@@ -29,10 +29,10 @@ const About: NextPage = () => {
               Motivación
             </div>
             <div className='font-light border-1 text-justify'>
-              Después de haber probado las alternativas existentes: imprimir y llevar nuestro certificado tamaño carta en el bolsillo, portar la version impresa en PVC (plástico) o incluso comprar una camiseta con el certificado estampado, nos topábamos con que el papel se deteriora, los QRs impresos en plástico no podían ser leídos o las camisetas se  ensucian, siempre volvíamos a descargar el certificado y guardarlo en el celular (en formatos no amigables).
+              Después de haber probado las alternativas existentes: imprimir y llevar nuestro certificado tamaño carta en el bolsillo, portar la versión impresa en PVC (plástico) o incluso comprar una camiseta con el certificado estampado, nos topábamos con que el papel se deteriora, los QRs impresos en plástico no podían ser leídos o las camisetas se  ensucian, siempre volvíamos a descargar el certificado y guardarlo en el celular (en formatos no amigables).
             </div>
             <div className='font-light border-1 text-justify'>
-              Nuestros celulares son algo que siempre llevamos con nosotros, por eso pensamos, por qué no usamos las funcionalidades que vienen en los teléfonos: como las billeteras (wallets, que son comúnmente utilizadas para llevar tickets de avión, entradas de conciertos o cupones) o al menos cambiar el formato del certificado a una version horizontal como la pantalla del celular.
+              Nuestros celulares son algo que siempre llevamos con nosotros, por eso pensamos, por qué no usamos las funcionalidades que vienen en los teléfonos: como las billeteras (wallets, que son comúnmente utilizadas para llevar tickets de avión, entradas de conciertos o cupones) o al menos cambiar el formato del certificado a una versión horizontal como la pantalla del celular.
             </div>
             <div className='font-light border-1 text-justify'>
               Es ahi cuando nos reunimos los tres y comenzamos a trabajar en esta solución que haga ambas cosas. Guardar el certificado en tu billetera móvil y crear un formato horizontal del certificado, amigable, ecológico y funcional.
