@@ -1,0 +1,22 @@
+{
+  "name": "certicovid-design-tool",
+  "version": "1.0.0",
+  "description": "CertiCovid Design Tool",
+  "main": "src/app.ts",
+  "scripts": {
+    "randname": "echo \"$(pwd)/data/$(openssl rand -hex 6)__$(date +%Y%m%d_%H%M%S).txt\"",
+    "build": "export FILENAME=\"$(yarn -s randname)\" && ts-node src/app.ts",
+    "start": "export FILENAME=\"$(yarn -s randname)\" && ts-node src/app.ts && open $FILENAME"
+  },
+  "keywords": [],
+  "author": "Gary Ascuy <gary.ascuy@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@walletpass/pass-js": "^6.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.7.6",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
+  }
+}
