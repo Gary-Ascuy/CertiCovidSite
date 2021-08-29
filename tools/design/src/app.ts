@@ -1,5 +1,6 @@
 import { Template } from '@walletpass/pass-js'
 import { ImageDensity, ImageType } from '@walletpass/pass-js/dist/lib/images'
+import path from 'path'
 import { promises as fs } from 'fs'
 import 'dotenv/config'
 
@@ -16,26 +17,36 @@ export async function createTemplate() {
   await template.loadCertificate(process.env.COVID__CERT_PATH as string, process.env.COVID__SIGNER_CERT_PASSWORD as string)
 
   console.log('Loading Images')
-  const files: { path: string, type: ImageType, density: ImageDensity }[] = [{
+
+  // Use the 8-bit color palette for PNG graphics that don’t require full 24-bit color
+  const files: { file: string, type: ImageType, density: ImageDensity }[] = [{
     type: 'icon',
-    path: './assets/icon.png',
+    file: './assets/icon.png',
+    density: '1x'
+  }, {
+    type: 'icon',
+    file: './assets/icon@2x.png',
+    density: '2x'
+  }, {
+    type: 'icon',
+    file: './assets/icon@3x.png',
+    density: '3x'
+  }, {
+    type: 'logo',
+    file: './assets/logo.png',
     density: '1x'
   }, {
     type: 'logo',
-    path: './assets/logo.png',
-    density: '1x'
-  }, {
-    type: 'logo',
-    path: './assets/logo@2x.png',
+    file: './assets/logo@2x.png',
     density: '2x'
   }, {
     type: 'logo',
-    path: './assets/logo@3x.png',
+    file: './assets/logo@3x.png',
     density: '3x'
   }]
 
-  for (const { type, path, density } of files) {
-    const buffer = await fs.readFile(path)
+  for (const { type, file, density } of files) {
+    const buffer = await fs.readFile(path.join(__dirname, file))
     await template.images.add(type, buffer, density)
   }
 
