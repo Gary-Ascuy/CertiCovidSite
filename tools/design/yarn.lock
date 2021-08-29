@@ -98,6 +98,11 @@ do-not-zip@1.0.0:
   resolved "https://registry.yarnpkg.com/do-not-zip/-/do-not-zip-1.0.0.tgz#cdced6c6352664ecb368f9fe7a15e1cb40c50c42"
   integrity sha512-Pgd81ET43bhAGaN2Hq1zluSX1FmD7kl7KcV9ER/lawiLsRUB9pRA5y8r6us29Xk6BrINZETO8TjhYwtwafWUww==
 
+dotenv@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-10.0.0.tgz#3d4227b8fb95f81096cdd2b66653fb2c7085ba81"
+  integrity sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==
+
 event-iterator@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/event-iterator/-/event-iterator-1.2.0.tgz#2e71dc6ca56f1cf8ebcb2b9be7fdfd10acabbb76"
