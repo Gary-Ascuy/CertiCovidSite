@@ -6,18 +6,21 @@ import 'dotenv/config'
 
 import { passTypeIdentifier, teamIdentifier, value as data } from './data'
 
+export const ApplePassTemplate = {
+  passTypeIdentifier,
+  teamIdentifier,
+  sharingProhibited: false,
+  labelColor: 'rgb(200, 200, 200)',
+  backgroundColor: 'rgb(2, 60, 82)',
+  foregroundColor: 'rgb(255, 255, 255)',
+}
+
 export async function createTemplate() {
   console.log('Creating Template')
-  const template = new Template('generic', {
-    passTypeIdentifier,
-    teamIdentifier,
-    sharingProhibited: false,
-  })
-
+  const template = new Template('generic', ApplePassTemplate)
   await template.loadCertificate(process.env.COVID__CERT_PATH as string, process.env.COVID__SIGNER_CERT_PASSWORD as string)
 
   console.log('Loading Images')
-
   // Use the 8-bit color palette for PNG graphics that don’t require full 24-bit color
   const files: { file: string, type: ImageType, density: ImageDensity }[] = [{
     type: 'icon',

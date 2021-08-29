@@ -8,7 +8,7 @@ export const teamIdentifier = process.env.COVID__TEAM_IDENTIFIER
 const { success, data, url } = {
   success: true,
   data: {
-    name: 'RAMIRO OCTAVIO ERGUETA BENAVIDES',
+    name: 'MANUEL GUIOMAR HANNE GARRY',
     ci: '7675764',
     birthday: '01/07/1782',
     departament: 'COCHABAMBA',

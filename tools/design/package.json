@@ -4,7 +4,7 @@
   "description": "CertiCovid Design Tool",
   "main": "src/app.ts",
   "scripts": {
-    "randname": "echo \"$(pwd)/data/$(openssl rand -hex 6)__$(date +%Y%m%d_%H%M%S).pkpass\"",
+    "randname": "echo \"$(pwd)/data/$(date +%Y%m%d_%H%M%S)__$(openssl rand -hex 6).pkpass\"",
     "build": "export FILENAME=\"$(yarn -s randname)\" && ts-node src/app.ts",
     "start": "export FILENAME=\"$(yarn -s randname)\" && ts-node src/app.ts && open $FILENAME",
     "clean": "cd data && (ls | grep '\\.pkpass$' | xargs rm)"
