@@ -1,6 +1,9 @@
 body {
-  /* TODO: Fix color background */
-  background-color: white;
-  /* background-color: rgba(0, 255, 0, 0.077); */
-  /* background-image: linear-gradient(180deg, #F5FAFF, #FFFFFF); */
+  background-image: linear-gradient(180deg, #F5FAFF, #FFFFFF);
+}
+
+div.btn-container {
+  position: fixed;
+  right: 20px;
+  bottom: 10px;
 }
