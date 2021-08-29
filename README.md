@@ -2,7 +2,7 @@
 
 Digitaliza tu certificado de vacunación de manera gratuita y llévalo en tu celular.
 
-# Sponsor - Buy Us a Coffee
+### Sponsor - Buy Us a Coffee
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E25YVX9)
 
