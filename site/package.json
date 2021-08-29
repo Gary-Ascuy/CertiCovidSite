@@ -1,0 +1,55 @@
+{
+  "name": "bo-certicovid-site",
+  "description": "CertiCovid convierte tu certificado de vacuna en una versión digital para que lo lleves en tu celular",
+  "version": "1.0.0-rc1",
+  "private": true,
+  "license": "MIT",
+  "authors": [
+    "Gary Ascuy @garyascuy",
+    "Rodrigo Ergueta @rodrigoergueta",
+    "Ramiro Ergueta @ramiroergueta"
+  ],
+  "scripts": {
+    "dev": "next dev -p 3666",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@walletpass/pass-js": "^6.9.1",
+    "cache-manager": "^3.4.4",
+    "file-saver": "^2.0.5",
+    "jsdom": "^17.0.0",
+    "jsqr": "^1.4.0",
+    "lodash": "^4.17.21",
+    "next": "11.1.0",
+    "next-seo": "^4.26.0",
+    "node-fetch": "^2.6.1",
+    "pdf-lib": "^1.16.0",
+    "pdfjs-dist": "^2.9.359",
+    "pngjs": "^6.0.0",
+    "qrcode": "^1.4.4",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-qr-reader": "^2.2.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/cache-manager": "^3.4.2",
+    "@types/file-saver": "^2.0.3",
+    "@types/jsdom": "^16.2.13",
+    "@types/lodash": "^4.14.172",
+    "@types/node-fetch": "^2.5.12",
+    "@types/pngjs": "^6.0.1",
+    "@types/qrcode": "^1.4.1",
+    "@types/react": "17.0.19",
+    "@types/react-qr-reader": "^2.1.4",
+    "@types/uuid": "^8.3.1",
+    "autoprefixer": "^10.3.2",
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.0",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.7",
+    "typescript": "4.3.5"
+  }
+}

@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  certicovid:
+    image: garyascuy/certicovid:1.0.0
+    build:
+      context: ../../site
+      dockerfile: ../tools/docker/Dockerfile
+    ports:
+      - 3666:3666
+    env_file:
+      - .env.local
