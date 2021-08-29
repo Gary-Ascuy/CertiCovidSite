@@ -1,8 +1,9 @@
+import { ApplePass } from '@walletpass/pass-js/dist/interfaces'
 import { v4 as uuid } from 'uuid'
 
-const description = 'Carnet de Vacunación'
-const passTypeIdentifier = process.env.PASS_TYPE_IDENTIFIER
-const teamIdentifier = process.env.TEAM_IDENTIFIER
+export const description = 'Carnet de Vacunación'
+export const passTypeIdentifier = process.env.COVID__PASS_TYPE_IDENTIFIER
+export const teamIdentifier = process.env.COVID__TEAM_IDENTIFIER
 
 const { success, data, url } = {
   success: true,
@@ -24,7 +25,7 @@ const { success, data, url } = {
   url: 'https://sus.minsalud.gob.bo/busca_vacuna_dosisqr?dosis=2da%20DOSIS&ci=7675764&fechanacimiento=01/07/1782'
 }
 
-module.exports = {
+export const value: Partial<ApplePass> = {
   passTypeIdentifier,
   teamIdentifier,
   organizationName: 'CertiCovid',
