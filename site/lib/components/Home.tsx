@@ -4,7 +4,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { isObject } from 'lodash'
+import { defer, isObject } from 'lodash'
 
 import Step from './Step'
 import Preview from './Preview'
@@ -77,7 +77,7 @@ export default function Home() {
     setErrorMessage('No se pudo iniciar la cámara. Intente en otro dispositivo')
   }
 
-  const downloadPdf = async (vaccine: VaccinationInformation) => {
+  const downloadPdf = (vaccine: VaccinationInformation) => defer(async () => {
     try {
       setDownloadError(null)
       setIsDownloading(true)
@@ -87,9 +87,9 @@ export default function Home() {
     } finally {
       setIsDownloading(false)
     }
-  }
+  })
 
-  const downloadPass = async (url: string, vaccine: VaccinationInformation) => {
+  const downloadPass = (url: string, vaccine: VaccinationInformation) => defer(async () => {
     try {
       setDownloadError(null)
       setIsDownloading(true)
@@ -99,7 +99,7 @@ export default function Home() {
     } finally {
       setIsDownloading(false)
     }
-  }
+  })
 
   useEffect(() => {
     if (!url) return
