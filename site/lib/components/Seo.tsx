@@ -21,6 +21,6 @@ export default function Seo({
 }: MetadataProps) {
   const og = { title, description, type: 'website', url, images: [image] }
   return (
-    <NextSeo noindex={true} title={title} description={description} openGraph={og} />
+    <NextSeo title={title} description={description} openGraph={og} />
   )
 }
