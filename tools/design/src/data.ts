@@ -1,7 +1,7 @@
 import { ApplePass } from '@walletpass/pass-js/dist/interfaces'
 import { v4 as uuid } from 'uuid'
 
-export const description = 'Carnet de Vacunación'
+export const description = 'CARNET DE VACUNACIÓN'
 export const passTypeIdentifier = process.env.COVID__PASS_TYPE_IDENTIFIER
 export const teamIdentifier = process.env.COVID__TEAM_IDENTIFIER
 
@@ -102,5 +102,8 @@ export const value: Partial<ApplePass> = {
       messageEncoding: 'utf-8',
       altText: 'CertiCovid'
     }
-  ]
+  ],
+  nfc: {
+    message: 'GARY ASCUY'
+  }
 }
