@@ -30,7 +30,6 @@ export default function Header({ title = 'CertiCovid', className = 'text-5xl' }:
         <Link href='/'>
           <a className='hover:underline hover:text-primary'>Inicio</a>
         </Link>
-        <a target='_blank' href='https://ko-fi.com/certicovid' className='hover:underline hover:text-primary' rel="noreferrer">Donaciones</a>
         <a target='_blank' href='https://github.com/Gary-Ascuy/CertiCovidSite' className='hover:underline hover:text-primary' rel="noreferrer">GitHub</a>
         <Link href='/about'>
           <a className='hover:underline hover:text-primary'>¿Quiénes somos?</a>
