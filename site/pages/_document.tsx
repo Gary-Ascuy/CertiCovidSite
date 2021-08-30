@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-sync-scripts */
+
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 export default class CertiCovidDocument extends Document {
@@ -21,7 +23,7 @@ export default class CertiCovidDocument extends Document {
           />
 
           {/* Ko-fi Button */}
-          <script async type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js' />
+          <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js' />
         </Head>
         <body>
           <Main />
