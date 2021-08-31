@@ -5,7 +5,9 @@ import QRCode from 'qrcode'
 import { VaccinationInformation } from '../../models/VaccinationInformation'
 import * as ga from '../../ga'
 
-export async function loadPdfTemplate(url: string = '/templates/pdf/template.pdf') {
+const defaultTemplate = process.env.NEXT_PUBLIC__PDF_TEMPLATE_URL || '/templates/pdf/template.pdf'
+
+export async function loadPdfTemplate(url: string = defaultTemplate) {
   const bytes = await fetch(url).then(res => res.arrayBuffer())
   const pdf = await PDFDocument.load(bytes)
   return pdf
