@@ -22,7 +22,8 @@ export async function getData(base64Url: string): Promise<ResponsePayload<Vaccin
   if (cached) return cached
 
   const url = Buffer.from(base64Url, 'base64').toString()
-  if (getValidationError(url)) throw Error('Invalid Parameter')
+  const { error } = getValidationError(url)
+  if (error) throw Error('Invalid Parameter')
 
   const html = await getBuffer(url)
   const dom = new JSDOM(html)

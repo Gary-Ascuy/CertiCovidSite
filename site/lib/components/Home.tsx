@@ -41,15 +41,15 @@ export default function Home() {
     setError(message || 'Error inesperado')
   }
 
-  const validateAndUpdateUrl = useCallback((value: string) => {
-    if (!value) return
+  const validateAndUpdateUrl = useCallback((baseUrl: string) => {
+    if (!baseUrl) return
 
     try {
       setError(null)
       setData(null)
       setCode(null)
 
-      const error = getValidationError(value)
+      const { url, error } = getValidationError(baseUrl)
       if (error) {
         setUrl('')
         setCode('')
@@ -57,7 +57,6 @@ export default function Home() {
         return
       }
 
-      const url = value
       setCode(encodeURI(window.btoa(url)))
       setUrl(url)
     } catch (error) {
