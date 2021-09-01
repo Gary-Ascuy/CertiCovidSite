@@ -17,5 +17,5 @@ export function isOldQRCode(data: string) {
   const [_dose, _place, _lot] = vaccine.split('-')
   if (!isDate(new Date(`${y}-${m}-${d}`))) return errorMessage
 
-  return `El QR corresponde a ${name}, pero tiene un formato antiguo, por favor utilice un certificado actual`
+  return `El QR corresponde a ${name}, pero tiene un formato antiguo. Por favor utilice un certificado con un QR Actualizado. Para generar un certificado con un QR actual diríjase a <a target="_blank" class="hover:underline text-primary font-light" href="https://sus.minsalud.gob.bo/#vacuna" rel="noreferrer">https://sus.minsalud.gob.bo/#vacuna</a>`
 }

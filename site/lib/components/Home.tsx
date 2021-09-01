@@ -192,7 +192,7 @@ export default function Home() {
             <p>Recabando información de tu certificado del sitio oficial del ministerio de salud. Esto tomará unos segundos.</p>
 
             {isLoading && <Loading message='Validando...'></Loading>}
-            {error && <div className='bg-red-200 rounded-md text-center text-red-900 py-5'>{error}.</div>}
+            {error && <div className='bg-red-200 rounded-md text-center text-red-900 py-5' dangerouslySetInnerHTML={{ __html: `${error}.` }}></div>}
             {data && data.success && <Preview person={data.data}></Preview>}
           </div>
         </Step>
