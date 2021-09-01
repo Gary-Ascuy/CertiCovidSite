@@ -78,6 +78,8 @@ export default function Home() {
   }
 
   const downloadPdf = (vaccine: VaccinationInformation) => defer(async () => {
+    if (isDownloading) return
+
     try {
       setDownloadError(null)
       setIsDownloading(true)
@@ -90,6 +92,8 @@ export default function Home() {
   })
 
   const downloadPass = (url: string, vaccine: VaccinationInformation) => defer(async () => {
+    if (isDownloading) return
+
     try {
       setDownloadError(null)
       setIsDownloading(true)
@@ -212,27 +216,25 @@ export default function Home() {
             {downloadError && <div className='bg-red-200 rounded-md text-center text-red-900 py-5'>{downloadError}.</div>}
             {isDownloading && <Loading message='Descargando ...'></Loading>}
 
-            {!isDownloading &&
-              <div className='grid grid-cols-2 gap-5 md:grid-cols-3'>
-                <div>
-                  <div className='cursor-pointer' onClick={() => data && data.data && downloadPass(`/api/v1/pass?code=${code}`, data.data)}>
-                    <img className='w-full hover:shadow-lg rounded-2xl' src='/assets/buttons/Add_to_Apple_Wallet_rgb_ES.svg' alt='apple wallet button'></img>
-                  </div>
-
-                  <div className='text-sm p-2 text-center'>
-                    <a className='hover:underline text-primary font-light' target='_blank' href='https://play.google.com/store/apps/details?id=io.walletpasses.android' rel="noreferrer">
-                      Compatible con Android Wallets
-                    </a>
-                  </div>
+            <div className={`grid grid-cols-2 gap-5 md:grid-cols-3 ${isDownloading ? 'opacity-50' : ''}`} >
+              <div>
+                <div className='cursor-pointer' onClick={() => data && data.data && downloadPass(`/api/v1/pass?code=${code}`, data.data)}>
+                  <img className='w-full hover:shadow-lg rounded-2xl' src='/assets/buttons/Add_to_Apple_Wallet_rgb_ES.svg' alt='apple wallet button'></img>
                 </div>
 
-                <div className='hidden md:block'></div>
-
-                <div className='cursor-pointer' onClick={() => data && data.data && downloadPdf(data.data)}>
-                  <img className='w-full hover:shadow-lg rounded-2xl' src='/assets/buttons/Add_to_PDF.svg' alt='download pdf button'></img>
+                <div className='text-sm p-2 text-center'>
+                  <a className='hover:underline text-primary font-light' target='_blank' href='https://play.google.com/store/apps/details?id=io.walletpasses.android' rel="noreferrer">
+                    Compatible con Android Wallets
+                  </a>
                 </div>
               </div>
-            }
+
+              <div className='hidden md:block'></div>
+
+              <div className='cursor-pointer' onClick={() => data && data.data && downloadPdf(data.data)}>
+                <img className='w-full hover:shadow-lg rounded-2xl' src='/assets/buttons/Add_to_PDF.svg' alt='download pdf button'></img>
+              </div>
+            </div>
           </div>
         </Step>
       }
